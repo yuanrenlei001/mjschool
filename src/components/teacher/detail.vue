@@ -14,6 +14,7 @@
             <div class="right033" v-if="list.star == 3"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
             <div class="right033" v-if="list.star == 4"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
             <div class="right033" v-if="list.star == 5"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""></div>
+            <div class="right02222">部门：{{list.depart == null?'暂无部门':list.depart}} <img v-show="list.onJob !==1" src="@/assets/out.png" alt=""></div>
         </div>
         <div class="text">
             <div class="title">讲师介绍</div>
@@ -155,7 +156,7 @@
     .right011 span {background: #fa5b55;display: inline-block;width:1.2rem;height:.4rem;text-align: center;line-height: .4rem;
         color: #fff;border-radius: .2rem;font-size: .22rem;margin-left: .2rem;
     }
-    .right033 {margin-top: .3rem;font-size: .24rem;}
+    .right033 {margin-top: .1rem;font-size: .24rem;}
     .right033 img {width:.35rem;height:.33rem;}
     .text {padding: 0 .24rem .4rem .24rem;background: #fff;margin-top: .1rem;}
     .title {height:1rem;line-height: 1rem;font-size: .3rem;color: #333;font-weight: 900;position: relative;}
@@ -195,6 +196,8 @@
         -o-text-overflow:ellipsis;
         overflow: hidden;
     }
+    .right02222 {color: #4c4c4c;font-size: .3rem;}
+    .right02222 img {width:.8rem;height:.32rem;vertical-align:sub;margin-left: .1rem;}
     .right03 img {width:.23rem;height:.23rem;margin-right: .2rem;}
     .right04 {font-size: .26rem;color: #666;position: absolute;bottom:0;left:0;width:100%;}
     .right04 span:last-child {float:right;}

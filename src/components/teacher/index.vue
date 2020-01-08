@@ -12,6 +12,7 @@
                         <span v-if="item.star == 5">五星讲师</span>
                     </div>
                     <div class="right02">{{item.intro}}</div>
+                    <div class="right02">部门：{{item.depart == null?'暂无部门':item.depart}} <img v-show="item.onJob !==1" src="@/assets/out.png" alt=""></div>
                     <div class="right03" v-if="item.star == 1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                     <div class="right03" v-if="item.star == 2"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                     <div class="right03" v-if="item.star == 3"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
@@ -125,7 +126,8 @@
         overflow: hidden;
         margin-top: .1rem;
     }
-    .right03 {margin-top: .3rem;font-size: .24rem;}
+    .right03 {margin-top: .1rem;font-size: .24rem;}
     .right03 img {width:.35rem;height:.33rem;}
     .right04 {font-size: .26rem;color: #666;position: absolute;bottom:0;left:0;}
+    .right02 img {width:.8rem;height:.32rem;vertical-align:sub;margin-left: .1rem;}
 </style>

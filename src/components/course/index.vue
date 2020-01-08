@@ -7,7 +7,7 @@
             </div>
             <div class="courseRight">
                 <router-link class="courseList" :to="{path: '/courseList', query: { id: item.id }}"  v-for="item in list"><img :src="getImg+item.frontCover" alt="">
-                    <div style="position: absolute;top:0;left:0;font-size: .36rem;color: #fff;width:100%;text-align: center;height:1.6rem;line-height: 1.6rem;">{{item.name}}</div>
+                    <div class="texts">{{item.name}}</div>
                 </router-link>
                 <div v-show="list.length==0" style="width:5rem;position: relative;margin:2rem auto 0;text-align: center;"><img src="@/assets/null.png" alt="" style="width:5rem;"></div>
             </div>
@@ -34,6 +34,7 @@
         methods:{
             changeIndex(index,id){
                 this.activeindex=index;
+                localStorage.setItem('listId',id)
                 this.axios({
                     type: 'get',     // 通过设置type，来选择是get还是post请求
                     url: this.getAjax+'/course/category?pid='+id,    // 访问的后端接口地址
@@ -60,6 +61,7 @@
                 }).then(res => {
                     console.log(res.data.data)
                     this.category = res.data.data;
+                    localStorage.setItem('listId',this.category[0].id)
                 this.axios({
                     type: 'get',     // 通过设置type，来选择是get还是post请求
                     url: this.getAjax+'/course/category?pid='+this.category[0].id,    // 访问的后端接口地址
@@ -107,11 +109,24 @@
         top:0;
         left:0;
     }
-    .courseRight {background: #fff;margin-left: 2.1rem;width:4.9rem;height:100%;padding: .15rem .24rem 0 .24rem;
-        overflow-y: scroll;}
-    .courseList {display: block;width:4.9rem;height:1.6rem;position: relative;border-radius: .2rem;overflow: hidden;
-        box-shadow: 0 2px 5px rgba(0,0,0,.2);
-        margin-bottom: .28rem;
+
+    .courseRight {
+        background: #fff;
+        margin-left: 2.1rem;
+        width: 4.9rem;
+        height: 100%;
+        padding: .15rem .24rem 0 .24rem;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
-    .courseList img {width:4.9rem;height:1.6rem;}
+    .courseList {
+        display: block;
+        width: 2.3rem;
+        position: relative;
+        overflow: hidden;
+        float:left;
+        margin-left: .15rem;
+    }
+    .texts {height:.7rem;line-height: .7rem;font-size: .28rem;color: #4c4c4c;text-align: center;}
+    .courseList img {width:2.3rem;height:1.8rem;border-radius: .2rem;}
 </style>

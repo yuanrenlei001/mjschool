@@ -12,6 +12,10 @@ import Video from 'video.js'
 import qs from 'qs'
 import 'video.js/dist/video-js.css'
 import global_ from './components/allApi'//引用文件
+import VideoPlayer from 'vue-video-player'
+require('video.js/dist/video-js.css')
+require('vue-video-player/src/custom-theme.css')
+Vue.use(VideoPlayer)
 let options = {
     fullscreenEl: false
 };
@@ -20,9 +24,9 @@ import datePicker from 'multifunctional-datepicker'
 Vue.prototype.$datepicker = datePicker;
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper)
-// if (process.env.NODE_ENV === 'production') {
-//     new VConsole()
-// }
+if (process.env.NODE_ENV === 'production') {
+    new VConsole()
+}
 Vue.prototype.allApi = global_
 Vue.use(preview, options)
 Vue.use(preview);

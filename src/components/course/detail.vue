@@ -3,6 +3,7 @@
         <div class="content">
             <div class="title"><p>{{list.detail.name}}</p></div>
             <div class="textTime">
+                <span>{{list.detail.teacher.name}}</span>
                 <span>{{list.detail.createTime}}</span>
                 <span class="read">{{list.detail.views}}</span>
             </div>
@@ -14,6 +15,7 @@
             </div>
             <div class="article">
                 <div class="note" style="text-align: right;">
+                    <span style="float:left;" @click="goPl()">去评价</span>
                     <span v-if="is_like ==0" class="isgood good" style="margin-right: 0;line-height: 9vw;" @click="like()">{{ this.likeNum }}</span>
                     <span v-else class="isgood good_" style="margin-right: 0;line-height: 9vw;" @click="like()" >{{ this.likeNum }}</span>
                 </div>
@@ -145,7 +147,7 @@
                 type:1,
                 id:this.$route.query.id,
                 // id:1,
-                list:{applies:[],detail:[],files:[],signs:[],views:[]},
+                list:{applies:[],detail:{teacher:{name:''}},files:[],signs:[],views:[]},
                 fixedShadow:false,
                 content:'',
                 comments:{},
@@ -169,6 +171,10 @@
             window.addEventListener('scroll', this.onScroll);
         },
         methods:{
+            goPl:function(){
+                this.$router.push({path:'/causeList',query:{id:this.id,name:this.list.detail.teacher.name,teacherId:this.list.detail.teacher.id}})
+                // { id: item.teacher.id ,courseId:item.id,name:item.teacher.name}}
+            },
             send:function(){
                 this.fixedShadow = true;
             },

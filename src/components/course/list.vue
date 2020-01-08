@@ -1,5 +1,9 @@
 <template>
     <div class="container">
+        <swiper :options="swiperOption" ref="mySwiper"  class="swipers">
+            <!-- slides -->
+            <swiper-slide  ref="mySwiper" v-for="(item,index) in top" :id="item.id" :class="id==item.id?'active':''" @click="tabList(item.id)">{{item.name}}</swiper-slide>
+        </swiper>
         <div class="list">
             <div class="courseSort">
                 <router-link class="news" :to="{path: '/newsDetail', query: { id: item.id }}" v-for="item in list">
@@ -33,6 +37,7 @@
 </template>
 
 <script>
+    let vm = null;
     import minShopBar  from '@/components/tabBar'
     export default {
         name: "index",
@@ -44,7 +49,32 @@
                 pageNum:1,
                 id:this.$route.query.id,
                 // id:1,
-                scroll:false
+                scroll:false,
+                swiperOption: {
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true,
+                    autoplay: 2500,
+                    autoplayDisableOnInteraction: false,
+                    loop: false,
+                    coverflow:'',
+                    rotate: 30,
+                    stretch: 10,
+                    depth: 60,
+                    slidesPerView: 5,
+                    spaceBetween: 10,
+                    modifier: 2,
+                    slideShadows : true,
+                    isSign:false,
+                    on:{
+                        click: function(e){
+                            // console.log(e.target.id)
+                            vm.tabList(e.target.id);
+                            // console.log(this.id)
+                        },
+                    },
+                },
+                pid:localStorage.getItem('listId'),
+                top:{},
             };
         },
         components: {
@@ -52,6 +82,7 @@
         },
         created() {
             window.addEventListener('scroll', this.onScroll);
+            vm = this;
         },
         methods:{
             courseList:function(){
@@ -107,14 +138,60 @@
                 }
 
             },
+            getList:function(){
+                this.axios({
+                    type: 'get',     // 通过设置type，来选择是get还是post请求
+                    url: this.getAjax+'/course/category?pid='+this.pid,    // 访问的后端接口地址
+                    // url: this.getAjax+'/newsRotatePic.do',    // 访问的后端接口地址
+                    params: {                // get请求使用params,post请求使用data(data为json格式)
+
+                    }
+                }).then(res => {
+                    console.log(res.data.data)
+                    this.top = res.data.data;
+                }).catch(err => {
+                    console.log('请求错误')    // 请求错误弹出警告
+                })
+            },
+            tabList:function(id){
+                this.pageSize = 10;
+                this.pageNum = 1;
+                console.log(id)
+                this.id = id;
+                this.axios({
+                    type: 'get',     // 通过设置type，来选择是get还是post请求
+                    url: this.getAjax+'/course/list?type='+id+'&pageSize='+this.pageSize+'&pageNum='+this.pageNum+'',    // 访问的后端接口地址
+                    // url: this.getAjax+'/newsRotatePic.do',    // 访问的后端接口地址
+                    params: {                // get请求使用params,post请求使用data(data为json格式)
+
+                    }
+                }).then(res => {
+                    this.list = res.data.data.rows;
+                    if(this.list.length>=this.pageSize){
+                        this.pageNum++;
+                        this.scroll = true;
+                    }
+                }).catch(err => {
+                    console.log('请求错误')    // 请求错误弹出警告
+                })
+            }
+        },
+        computed: {
+            swiper() {
+                return this.$refs.mySwiper.swiper
+            }
         },
         mounted(){
+            // this.swiper.slideTo(3, 1000, false)
             this.courseList();
+            this.getList();
         }
     }
 </script>
 
 <style scoped>
+    .active {color: #fa5b55;}
+    .swipers {font-size: .28rem;color: #4c4c4c;height:.8rem;line-height: .8rem;border-bottom: .1rem solid #f2f3f9;padding: 0 .24rem;}
     .list {padding: 0 .24rem;}
     .detail {width:100%;position: relative;display: block;height:1.53rem;margin-top: .4rem;}
     .left {width:2.3rem;height:100%;float:left;position: relative;border-radius: .2rem;overflow: hidden;}

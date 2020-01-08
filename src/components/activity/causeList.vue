@@ -61,9 +61,9 @@
                 text:'',
                 openId:this.userId,
                 pdId:localStorage.getItem('plId'),
-                id:this.$route.query.id,
+                id:this.$route.query.teacherId,
                 names:this.$route.query.name,
-                courseId:this.$route.query.courseId,
+                courseId:this.$route.query.id,
                 stars0: [{
                     src: starOffImg,
                     active: false

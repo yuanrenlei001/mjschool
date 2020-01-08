@@ -10,6 +10,7 @@
             <router-link class="link link02" to="/myActivity">我的活动</router-link>
             <router-link class="link link03" to="/application">讲师申请</router-link>
             <router-link class="link link04" to="/myShare">我的分享</router-link>
+            <!--<router-link class="link link04" to="/code">扫码签到</router-link>-->
         </div>
         <minShopBar v-if="showMinShopTab"  v-show="this.isIos"/>
         <div class="fixed" v-show="pl">

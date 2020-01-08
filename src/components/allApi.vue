@@ -1,8 +1,8 @@
 <script>
 
     var xhr = new XMLHttpRequest();
-    var  id='231';
-    // var  id=localStorage.getItem('userId')==null?'':localStorage.getItem('userId');
+    // var  id='231';
+    var  id=localStorage.getItem('userId')==null?'':localStorage.getItem('userId');
     var token = '';
     var that = this;
         function getCode(){

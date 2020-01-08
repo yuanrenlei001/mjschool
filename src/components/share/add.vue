@@ -71,39 +71,36 @@
             </div>
         </div>
         <div v-show="radio == 'video'">
-            <div class="album albumvideo">
-                <div>
-                    <div class="pic_img">
-                        <div class="pic_img_box">
-                            <el-upload class="avatar-uploader"
-                                       :action="url"
-                                       v-bind:on-progress="uploadVideoProcess"
-                                       v-bind:on-success="handleVideoSuccess"
-                                       :headers="token"
-                                       v-bind:before-upload="beforeUploadVideo"
-                                       v-bind:show-file-list="false">
-                                <video v-if="videoForm.showVideoPath !='' && !videoFlag"
-                                       v-bind:src="getImg+videoURL"
-                                       class="avatar video-avatar"
-                                       controls="controls">
-                                    您的浏览器不支持视频播放
-                                </video>
-                                <i v-else-if="videoForm.showVideoPath =='' && !videoFlag"
-                                   class="el-icon-plus avatar-uploader-icon"></i>
-                                <el-progress v-if="videoFlag == true"
-                                             type="circle"
-                                             v-bind:percentage="videoUploadPercent"
-                                             style="margin-top:7px;"></el-progress>
-                            </el-upload>
-                        </div>
+            <div class="album albumvideo" style="padding: 0 .24rem;">
+                <form
+                        id="myForm"
+                        enctype="multipart/form-data"
+                        name="fileinfo"
+                        action=""
+                        target="uploadFrame"
+                >
+                    <div class="add" v-if="videoshow">
+                        <img src="@/assets/upImg.png" alt="" class="upImg">
+                        <!--<label for="imgFile" class="addbutton button-green"-->
+                        <!--&gt;选择视频</label-->
+                        <!--&gt;-->
+                        <input
+                                @change="changeVideo"
+                                id="imgFile"
+                                class="upload_input"
+                                type="file"
+                                accept="video/*"
+                        />
                     </div>
-                </div>
+                    <video v-else  controls="controls"  loop :src="getImg+videoPath" style="height:3rem;margin: .5rem 0;padding: 0 .24rem;width:94%;"></video>
+                </form>
                 <p class="Upload_pictures" style="text-align: center;">
                     <span></span>
                     <span style="text-align: center;line-height: 1rem;width:100%;font-size: .28rem;">最多可以上传1个视频，建议小于50MB，推荐格式mp4</span>
                 </p>
             </div>
         </div>
+
         <div class="fixed" v-show="pl">
             <div class="alert">
                 <div class="titles">提 示</div>
@@ -155,13 +152,59 @@
                 token:{'Content-Type': 'application/x-www-form-urlencoded'},
                 videoIds:'',
                 videoURL:'',
-                videos:{}
+                videos:{},
+                form: {
+                    url: ''
+                },
+                fileList: [],
+                videoPath:'',
+                fileLoading: false,
+                ossParams: {
+                    expireTime: '',
+                    key: '',
+                    dir: ''
+                },
+                videoshow:true
             };
         },
         components: {
             minShopBar
         },
         methods:{
+            changeVideo() {
+                let that = this;
+                const Qs = require('qs');
+                var file = document.getElementById("imgFile").files[0];
+                that.file = file;
+                var ids = this.ids;
+                var formData = new FormData(); //构造一个 FormData，把后台需要发送的参数添加
+                // 到FormData里面，这样就可以直接把formData作为参数传递了
+                if (file) {
+                    formData.append("file", file); //接口需要传递的参数
+                }
+                let potss = formData;
+                let urls = this.getAjax+'/upload/video';
+                this.axios.post(urls,potss,{ headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },}, {
+                }) .then(function (res) {
+                    that.videoPath = res.data.data.savePath;
+                    that.videoIds = res.data.data.id;
+                    that.videoshow = false;
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                // axios
+                //     .post(urls, potss)
+                //     .then(function(res) {
+                //         that.prames.videoUrl = res.data.info;
+                //         that.videoshow = false;
+                //     })
+                //     .catch(function(err) {
+                //         console.log(err);
+                //     });
+            },
             getImageList(files) {
                 this.$nextTick(() => {
                     for (let i = 0, len = files.length; i < len; i++) {
@@ -448,6 +491,7 @@
                 let that = this;
                 let fd = new FormData()
                 fd.append('file', file, 'fileName')
+                console.log(fd)
                 this.axios.post(this.url,fd,{ headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },}, {
@@ -518,20 +562,20 @@
                     };
                 }
 
-                console.log(params)
-                // alert(params.video)
-                // this.axios.post(this.getAjax+'/share/add', Qs.stringify(params),{ headers: {
-                //         'Content-Type': 'application/x-www-form-urlencoded'
-                //     },}, {
-                // }) .then(function (res) {
-                //     // this.islike = res.data.data.rows.total;
-                //     that.pl = true;
-                //     that.plText = '发布成功,等待管理员审核！'
-                //     console.log(res)
-                // })
-                //     .catch(function (error) {
-                //         console.log(error);
-                //     });
+                console.log(params.video)
+                alert(params.video)
+                this.axios.post(this.getAjax+'/share/add', Qs.stringify(params),{ headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },}, {
+                }) .then(function (res) {
+                    // this.islike = res.data.data.rows.total;
+                    that.pl = true;
+                    that.plText = '发布成功,等待管理员审核！'
+                    console.log(res)
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             },
             alertBtn:function(){
                 this.$router.push("/share")

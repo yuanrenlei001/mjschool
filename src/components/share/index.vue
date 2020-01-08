@@ -1,7 +1,7 @@
 <template>
     <div class="container" style="padding-bottom:1rem;">
         <div v-show="list.length==0" style="width:5rem;position: relative;margin:2rem auto 0;text-align: center;"><img src="@/assets/null.png" alt="" style="width:5rem;"></div>
-        <div class="shareMain" v-for="item in list" v-show="list.length>0">
+        <div class="shareMain" v-for="(item,index) in list" v-show="list.length>0">
             <div class="shareList">
                 <div style="padding: 0 .24rem;">
                     <div class="shareTop">
@@ -24,6 +24,13 @@
                                     :preview="item.id"
                             >
                         </div>
+                        <!--<video-player  class="video-player vjs-custom-skin"-->
+                                       <!--ref="videoPlayer"-->
+                                       <!--:playsinline="true"-->
+                                       <!--:options="playerOptions[index]"-->
+                                       <!--v-if="item.style=='video'"-->
+                                       <!--@play="onPlayerPlay($event)"-->
+                        <!--&gt;</video-player>-->
                         <video v-if="item.style=='video'" controls="controls"  loop :src="getImg+item.videoPath" style="height:3rem;width:100%;margin: .5rem 0;"></video>
                     </div>
                 </div>
@@ -109,6 +116,7 @@
 
 <script>
     import 'vue-photo-preview/dist/skin.css'
+    import { videoPlayer } from 'vue-video-player';
     import minShopBar  from '@/components/tabBar'
     export default {
         name: "index",
@@ -130,16 +138,36 @@
                 is_like:0,
                 pageSize:10,
                 pageNum:1,
-                scroll:false
+                scroll:false,
+                playerOptions : {
+                    playbackRates: [1.0], //播放速度
+                    autoplay: false, //如果true,浏览器准备好时开始回放。
+                    muted: false, // 默认情况下将会消除任何音频。
+                    loop: false, // 导致视频一结束就重新开始。
+                    sources: [{
+                        type: "application/x-mpegURL",//这里的种类支持很多种：基本视频格式、直播、流媒体等，具体可以参看git网址项目
+                        src: 'https://belight-test.oss-cn-shanghai.aliyuncs.com/video/17/2019/04/01/14583968955367424.mp4' //url地址
+                    }],
+                    notSupportedMessage: '此视频暂无法播放，请稍后再试', //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+                },
             };
         },
         components: {
-            minShopBar
+            minShopBar,
+            videoPlayer
         },
         created() {
             window.addEventListener('scroll', this.onScroll);
         },
+        computed: {
+            player() {
+                return this.$refs.videoPlayer.player
+            }
+        },
         methods:{
+            onPlayerPlay(player) {
+                alert("play");
+            },
             beforeCreate () {
                 document.querySelector('body').setAttribute('style', 'background:#f2f3f9')
             },
@@ -154,6 +182,24 @@
                     }
                 }).then(res => {
                     this.list = res.data.data.rows
+                    // for(let i of this.list){
+                    //     console.log(i.style)
+                    //     if(i.style == 'video'){
+                    //         let arrStr = {
+                    //             playbackRates: [1.0], //播放速度
+                    //             autoplay: false, //如果true,浏览器准备好时开始回放。
+                    //             muted: false, // 默认情况下将会消除任何音频。
+                    //             loop: false, // 导致视频一结束就重新开始。
+                    //             sources: [{
+                    //                 type: "application/x-mpegURL",//这里的种类支持很多种：基本视频格式、直播、流媒体等，具体可以参看git网址项目
+                    //                 src: 'https://belight-test.oss-cn-shanghai.aliyuncs.com/video/17/2019/04/01/14583968955367424.mp4' //url地址
+                    //             }],
+                    //             notSupportedMessage: '此视频暂无法播放，请稍后再试', //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+                    //         }
+                    //         self.playerOptions.push(arrStr)
+                    //     }
+                    //
+                    // }
                     if(this.list.length>=this.pageSize){
                         this.pageNum++;
                         this.scroll = true;

@@ -8,6 +8,7 @@ import shareDetail from '@/components/share/detail'
 import User from '@/components/user/index'
 import myActivity from '@/components/user/myActivity'
 import Application from '@/components/user/application'
+import code from '@/components/user/code'
 import myShare from '@/components/user/myShare'
 import information from '@/components/user/information'
 import Course from '@/components/course/index'
@@ -25,6 +26,7 @@ import newActivity from '@/components/activity/newIndex'
 import ActivityDetail from '@/components/activity/detail'
 import Evaluation from '@/components/activity/evaluation'
 import evaluateList from '@/components/activity/evaluateList'
+import causeList from '@/components/activity/causeList'
 import SignUp from '@/components/activity/signUp'
 import CodeUp from '@/components/activity/codeUp'
 import Add from '@/components/share/add'
@@ -38,6 +40,7 @@ export default new Router({
       {path: '/share', name: 'Share', component: Share, meta: {title: '牛人分享'}},
       {path: '/shareAdd', name: 'shareAdd', component: Add, meta: {title: '发布分享'}},
       {path: '/user', name: 'User', component: User, meta: {title: '个人中心'}},
+      {path: '/code', name: 'code', component: code, meta: {title: '扫码跳转'}},
       {path: '/information', name: 'information', component: information, meta: {title: '个人信息'}},
       {path: '/myActivity', name: 'myActivity', component: myActivity, meta: {title: '我的活动'}},
       {path: '/application', name: 'Application', component: Application, meta: {title: '讲师申请'}},
@@ -57,6 +60,7 @@ export default new Router({
       {path: '/activityDetail', name: 'ActivityDetail', component: ActivityDetail, meta: {title: '活动详情'}},
       {path: '/evaluation', name: 'Evaluation', component: Evaluation, meta: {title: '讲师评价'}},
       {path: '/evaluateList', name: 'evaluateList', component: evaluateList, meta: {title: '讲师评价列表'}},
+      {path: '/causeList', name: 'causeList', component: causeList, meta: {title: '课程评价'}},
       {path: '/signUp', name: 'SignUp', component: SignUp, meta: {title: '报名详情'}},
       {path: '/codeUp', name: 'CodeUp', component: CodeUp, meta: {title: '签到详情'}},
       {path: '/text', name: 'text', component: text, meta: {title: '测试'}},
