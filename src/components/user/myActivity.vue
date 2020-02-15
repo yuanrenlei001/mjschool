@@ -16,7 +16,7 @@
                 </div>
             </router-link>
         </div>
-        <div v-show="list.length==0" style="width:5rem;position: relative;margin:2rem auto 0;text-align: center;"><img src="@/assets/null.png" alt="" style="width:5rem;"></div>
+<!--        <div v-show="list.length==0" style="width:5rem;position: relative;margin:2rem auto 0;text-align: center;"><img src="@/assets/null.png" alt="" style="width:5rem;"></div>-->
         <div v-if="scroll == false"  v-show="list.length>10" class="nulls" style="font-size: .36rem;color: #666;text-align: center;line-height: 1rem;">暂无数据</div>
         <!--<minShopBar v-if="showMinShopTab" />-->
     </div>

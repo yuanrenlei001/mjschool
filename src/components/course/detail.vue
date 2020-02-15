@@ -2,10 +2,17 @@
     <div class="container">
         <div class="content">
             <div class="title"><p>{{list.detail.name}}</p></div>
+          <div  class="list clear zbhd titleTop">
+            <div class="plTop">
+              <router-link id="pinglun" :to="{path: '/coursePl', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name}}">评价导师</router-link>
+              <div class="fl"><img :src="list.detail.teacher.avatar" alt="用户" class="user"></div>
+              <div class="midRight"><div class="name limit">{{list.detail.teacher.name}}</div><div class="time">{{list.detail.teacher.createTime}}</div></div>
+            </div>
+          </div>
             <div class="textTime">
-                <span>{{list.detail.teacher.name}}</span>
-                <span>{{list.detail.createTime}}</span>
-                <span class="read">{{list.detail.views}}</span>
+<!--&lt;!&ndash;                <span>{{list.detail.teacher.name}}</span>&ndash;&gt;-->
+<!--                <span>{{list.detail.createTime}}</span>-->
+<!--                <span class="read">{{list.detail.views}}</span>-->
             </div>
             <video v-if="list.detail.video!==''" autoplay loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>
             <audio v-if="list.detail.audio" :src="getImg+list.detail.audio"  controls style="position: relative;width:80%;left:10%;">    </audio>
@@ -96,12 +103,12 @@
                 </div>
                 <!--已读人员-->
                 <div v-if="type == 3" class="zan bottomDiv">
-                    <div  class="list clear zbhd" v-for="item in list.views">
-                        <div class="plTop">
-                            <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
-                            <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
-                        </div>
-                    </div>
+                      <div  class="list clear zbhd" v-for="item in list.views">
+                          <div class="plTop">
+                              <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
+                              <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
+                          </div>
+                      </div>
                 </div>
                 <div class="tip"></div>
                 <div class="loading hidden">
@@ -171,6 +178,9 @@
             window.addEventListener('scroll', this.onScroll);
         },
         methods:{
+          evaluate:function(id){
+              this.$router.push({path:'/coursePl',query:{id:id}})
+          },
             goPl:function(){
                 this.$router.push({path:'/causeList',query:{id:this.id,name:this.list.detail.teacher.name,teacherId:this.list.detail.teacher.id}})
                 // { id: item.teacher.id ,courseId:item.id,name:item.teacher.name}}
@@ -375,7 +385,29 @@
     }
 </script>
 <style scoped>
-
+  .titleTop {border-bottom: 1px solid #dbdbdb;margin: auto;}
+  .titleTop .plTop {width:80%;position: relative;margin: -.2rem auto 0;padding-bottom: 5px;}
+  #pinglun {
+    position: absolute;
+    top:.2rem;
+    right:0;
+    font-size: .26rem;
+    color: #333;
+    border: 1px solid #999;
+    width:1.6rem;
+    height:.5rem;
+    text-align: center;
+    line-height: .5rem;
+    border-radius: .2rem;
+  }
+  .titleTop img {
+    width: .74rem;
+    height: .74rem;
+    margin-top: 3.4vw;
+    margin-right: 3vw;
+    overflow: hidden;
+    border-radius: 50%;
+  }
     /*.content .articleText p img*/
     .uecontent >>> img{width:100%;}
     .fixed {
@@ -514,7 +546,7 @@
     .bottom .send:active {
         background: #fafafa;
     }
-    .content .title {height:.9rem;line-height: .9rem;padding: 0 4vw;border-bottom: 1px solid #dbdbdb;}
+    .content .title {height:.9rem;line-height: .9rem;padding: 0 4vw;}
     .content .title ,.content .title p{
         font-size: .32rem;
         color: #333;

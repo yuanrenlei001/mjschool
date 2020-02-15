@@ -1,5 +1,6 @@
 <template>
     <div class="container" style="padding-bottom:1rem;background: #eee;">
+      <div v-show="list.length==0" style="width:5rem;position: relative;margin:2rem auto 0;text-align: center;"><img src="@/assets/null.png" alt="" style="width:5rem;"></div>
         <div class="shareMain" v-for="item in list" v-show="list.length>0">
             <div class="shareList">
                 <div style="padding: 0 .24rem;">
@@ -117,6 +118,7 @@
 </template>
 
 <script>
+  import { videoPlayer } from 'vue-video-player';
     import 'vue-photo-preview/dist/skin.css'
     import minShopBar  from '@/components/tabBar'
     export default {
@@ -144,11 +146,17 @@
             };
         },
         components: {
-            minShopBar
+            minShopBar,
+          videoPlayer
         },
         created() {
             window.addEventListener('scroll', this.onScroll);
         },
+      computed: {
+        player() {
+          return this.$refs.videoPlayer.player
+        }
+      },
         methods:{
             Getuser:function(){
                 this.axios({

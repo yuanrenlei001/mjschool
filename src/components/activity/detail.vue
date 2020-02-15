@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <div class="text">课程简介</div>
+        <div class="text">导师简介</div>
         <div  v-show="list.courses.length == 1">
             <div class="sorts" style="padding: 0 .24rem;height:2.74rem;background:#fff;">
                 <router-link class="teacher" :to="{path: '/courseDetail', query: { id:list.courses[0].id }}" >
@@ -69,7 +69,7 @@
                     </router-link>
                 </swiper-slide>
                 </swiper>
-                <div class="text">内容简介</div>
+                <div class="text">活动描述</div>
                 <div class="html">
                     <div style="text-align: justify;" v-html="list.courses[0].content"></div>
                 </div>
@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="signUp">
-            <div class="signTop"><span>签到人员 （{{list.detail.signs}}/{{list.detail.applyCount}}）</span> <router-link to="/codeUp" class="more">更多 <img src="@/assets/img/right.png" alt=""></router-link></div>
+            <div class="signTop"><span>签到人员 （{{list.detail.signs}}）</span> <router-link to="/codeUp" class="more">更多 <img src="@/assets/img/right.png" alt=""></router-link></div>
             <div class="signUser">
                 <ul>
                     <li  v-for="(item,index) in list.signs" v-if="index<7" :key="index"><div><img :src="item.user.avatar" alt=""></div><div class="namess">{{item.user.name}}</div></li>

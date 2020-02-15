@@ -1,8 +1,8 @@
 <template>
     <div class="container" style="background: #f2f3f9;">
-        <div class="top">
+        <div class="top" v-if="is7" style="height:4.5rem;">
             <img :src="list.avatar" class="topBg">
-            <div class="right011">{{list.name}}
+            <div class="right011" style="margin-top: 0;">{{list.name}}
                 <span v-if="list.star == 1">一星讲师</span>
                 <span v-if="list.star == 2">二星讲师</span>
                 <span v-if="list.star == 3">三星讲师</span>
@@ -16,6 +16,22 @@
             <div class="right033" v-if="list.star == 5"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""></div>
             <div class="right02222">部门：{{list.depart == null?'暂无部门':list.depart}} <img v-show="list.onJob !==1" src="@/assets/out.png" alt=""></div>
         </div>
+      <div class="top" v-else >
+        <img :src="list.avatar" class="topBg">
+        <div class="right011" >{{list.name}}
+          <span v-if="list.star == 1">一星讲师</span>
+          <span v-if="list.star == 2">二星讲师</span>
+          <span v-if="list.star == 3">三星讲师</span>
+          <span v-if="list.star == 4">四星讲师</span>
+          <span v-if="list.star == 5">五星讲师</span>
+        </div>
+        <div class="right033" v-if="list.star == 1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
+        <div class="right033" v-if="list.star == 2"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
+        <div class="right033" v-if="list.star == 3"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
+        <div class="right033" v-if="list.star == 4"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
+        <div class="right033" v-if="list.star == 5"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""></div>
+        <div class="right02222">部门：{{list.depart == null?'暂无部门':list.depart}} <img v-show="list.onJob !==1" src="@/assets/out.png" alt=""></div>
+      </div>
         <div class="text">
             <div class="title">讲师介绍</div>
             <div class="texts">{{list.intro}}</div>
@@ -62,7 +78,8 @@
                 pageNum:1,
                 pageSize:6,
                 share:{},
-                scroll:false
+                scroll:false,
+              is7:false
             };
         },
         components: {
@@ -145,6 +162,17 @@
         mounted(){
             this.teacherDetail();
             this.teacherShare();
+            var u = navigator.userAgent;
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isIOS) {
+              if (screen.height == 812 && screen.width == 375){
+                //是iphoneX
+                this.is7 = true
+              }else{
+                //不是iphoneX
+                this.is7 = false
+              }
+            }
         }
     }
 </script>
@@ -152,7 +180,7 @@
 <style scoped>
     .top {width:100%;height:4.3rem;position: relative;text-align: center;background: #fff;padding-top: .3rem;}
     .topBg {width:2rem;height:2.58rem;border-radius: .2rem;}
-    .right011 {font-size: .32rem;color: #4c4c4c;margin-top: .2rem;}
+    .right011 {font-size: .32rem;color: #4c4c4c;}
     .right011 span {background: #fa5b55;display: inline-block;width:1.2rem;height:.4rem;text-align: center;line-height: .4rem;
         color: #fff;border-radius: .2rem;font-size: .22rem;margin-left: .2rem;
     }

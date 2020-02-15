@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="list">
-            <router-link class="teacher" :to="{path: '/evaluation', query: { id: item.teacher.id ,courseId:item.id,name:item.teacher.name}}"  v-for="item in list">
+            <router-link class="teacher" :to="{path: '/coursePl', query: { id: item.teacher.id ,courseId:item.id,name:item.teacher.name}}"  v-for="item in list">
                 <div class="left"><img :src="item.teacher.avatar"></div>
                 <div class="right">
                     <div class="right01">{{item.teacher.name}}

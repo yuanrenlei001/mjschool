@@ -27,6 +27,8 @@ Vue.use(VueAwesomeSwiper)
 if (process.env.NODE_ENV === 'production') {
     new VConsole()
 }
+// let vConsole = new VConsole()
+// Vue.use(vConsole)
 Vue.prototype.allApi = global_
 Vue.use(preview, options)
 Vue.use(preview);

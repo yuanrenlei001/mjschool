@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-        <swiper :options="swiperOption" ref="mySwiper"  class="swipers">
-            <!-- slides -->
-            <swiper-slide  ref="mySwiper" v-for="(item,index) in top" :id="item.id" :class="id==item.id?'active':''" @click="tabList(item.id)">{{item.name}}</swiper-slide>
-        </swiper>
+<!--        <swiper :options="swiperOption" ref="mySwiper"  class="swipers">-->
+<!--            &lt;!&ndash; slides &ndash;&gt;-->
+<!--            <swiper-slide  ref="mySwiper" v-for="(item,index) in top" :id="item.id" :class="id==item.id?'active':''" @click="tabList(item.id)">{{item.name}}</swiper-slide>-->
+<!--        </swiper>-->
         <div class="list">
             <div class="courseSort">
                 <router-link class="news" :to="{path: '/newsDetail', query: { id: item.id }}" v-for="item in list">
@@ -190,6 +190,7 @@
 </script>
 
 <style scoped>
+  .news {display: block;border-bottom: 1px solid #eee; padding-bottom: .16rem;}
     .active {color: #fa5b55;}
     .swipers {font-size: .28rem;color: #4c4c4c;height:.8rem;line-height: .8rem;border-bottom: .1rem solid #f2f3f9;padding: 0 .24rem;}
     .list {padding: 0 .24rem;}

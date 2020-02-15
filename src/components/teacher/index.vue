@@ -11,7 +11,7 @@
                         <span v-if="item.star == 4">四星讲师</span>
                         <span v-if="item.star == 5">五星讲师</span>
                     </div>
-                    <div class="right02">{{item.intro}}</div>
+<!--                    <div class="right02">{{item.intro}}</div>-->
                     <div class="right02">部门：{{item.depart == null?'暂无部门':item.depart}} <img v-show="item.onJob !==1" src="@/assets/out.png" alt=""></div>
                     <div class="right03" v-if="item.star == 1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                     <div class="right03" v-if="item.star == 2"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>

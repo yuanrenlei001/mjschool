@@ -26,6 +26,7 @@ import newActivity from '@/components/activity/newIndex'
 import ActivityDetail from '@/components/activity/detail'
 import Evaluation from '@/components/activity/evaluation'
 import evaluateList from '@/components/activity/evaluateList'
+import coursePl from '@/components/course/coursePl'
 import causeList from '@/components/activity/causeList'
 import SignUp from '@/components/activity/signUp'
 import CodeUp from '@/components/activity/codeUp'
@@ -60,6 +61,7 @@ export default new Router({
       {path: '/activityDetail', name: 'ActivityDetail', component: ActivityDetail, meta: {title: '活动详情'}},
       {path: '/evaluation', name: 'Evaluation', component: Evaluation, meta: {title: '讲师评价'}},
       {path: '/evaluateList', name: 'evaluateList', component: evaluateList, meta: {title: '讲师评价列表'}},
+      {path: '/coursePl', name: 'coursePl', component: coursePl, meta: {title: '导师评价'}},
       {path: '/causeList', name: 'causeList', component: causeList, meta: {title: '课程评价'}},
       {path: '/signUp', name: 'SignUp', component: SignUp, meta: {title: '报名详情'}},
       {path: '/codeUp', name: 'CodeUp', component: CodeUp, meta: {title: '签到详情'}},
