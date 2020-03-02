@@ -25,7 +25,7 @@ Vue.prototype.$datepicker = datePicker;
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper)
 if (process.env.NODE_ENV === 'production') {
-    new VConsole()
+    // new VConsole()
 }
 // let vConsole = new VConsole()
 // Vue.use(vConsole)

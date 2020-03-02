@@ -50,7 +50,7 @@
         <div class="fixed" v-show="show">
             <div class="fixedMain">
                 <div id="close" @click="close"></div>
-                <div style="padding-top: 1.5rem;" v-for="item in codes" v-if="item.name == 'teacher_5'"><span class="title">讲师分享：</span><span class="title01">公司五星讲师</span><span class="title02">{{item.value}}积分/次</span></div>
+                <div style="padding-top: 1.8rem;" v-for="item in codes" v-if="item.name == 'teacher_5'"><span class="title">讲师分享：</span><span class="title01">公司五星讲师</span><span class="title02">{{item.value}}积分/次</span></div>
                 <div v-for="item in codes" v-if="item.name == 'teacher_4'"><span class="title03">公司四星讲师</span><span class="title02">{{item.value}}积分/次</span></div>
                 <div v-for="item in codes" v-if="item.name == 'teacher_3'"><span class="title03">公司三星讲师</span><span class="title02">{{item.value}}积分/次</span></div>
                 <div v-for="item in codes" v-if="item.name == 'teacher_2'"><span class="title03">公司二星讲师</span><span class="title02">{{item.value}}积分/次</span></div>
@@ -60,8 +60,8 @@
                 <!--<div><span class="title03" v-for="item in codes" v-if="item.name == 'teacher_1'">公司一星讲师</span><span class="title02">{{item.value}}积分/次</span></div>-->
                 <div v-for="item in codes" v-if="item.name == 'share_article'"><span class="title">牛人分享：</span><span class="title01">文档分享并审核通过</span><span class="title02">{{item.value}}积分/次</span></div>
                 <div v-for="item in codes" v-if="item.name == 'share_video'"><span class="title03">视频分享并审核通过</span><span class="title02">{{item.value}}积分/次</span></div>
-                <div v-for="item in codes" v-if="item.name == 'activity_sign'"><span class="title">活动评估：</span><span class="title01">活动签到</span><span class="title02">{{item.value}}积分/次</span></div>
-                <div v-for="item in codes" v-if="item.name == 'course'"><span class="title03">评估课程</span><span class="title02">{{item.value}}积分/次</span></div>
+<!--                <div v-for="item in codes" v-if="item.name == 'activity_sign'"><span class="title">活动评估：</span><span class="title01">活动签到</span><span class="title02">{{item.value}}积分/次</span></div>-->
+<!--                <div v-for="item in codes" v-if="item.name == 'course'"><span class="title03">评估课程</span><span class="title02">{{item.value}}积分/次</span></div>-->
                 <div><span class="title">导师分享：</span><span class="title01">新员工导师，由管理员评分 </span></div>
                 <div v-for="item in codes" v-if="item.name == 'teacher_new'"><span style="margin-left: 1.4rem;color: #fa5b55;">{{item.value}}积分/个 </span></div>
                 <div><span style="margin-left: 1.4rem;color: #4c4c4c;">新人荣誉试点导师，由管理员评分</span></div>

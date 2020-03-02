@@ -5,20 +5,23 @@
                 <div class="left"><img :src="item.avatar"></div>
                 <div class="right">
                     <div class="right01">{{item.name}}
-                        <span v-if="item.star == 1">一星讲师</span>
-                        <span v-if="item.star == 2">二星讲师</span>
-                        <span v-if="item.star == 3">三星讲师</span>
-                        <span v-if="item.star == 4">四星讲师</span>
-                        <span v-if="item.star == 5">五星讲师</span>
+<!--                      Math.round(748.5)-->
+<!--                      item.score/item.scoreTotal-->
+                        <span v-if=" item.star==1 ">一星讲师</span>
+                        <span v-if="item.star  == 2">二星讲师</span>
+                        <span v-if="item.star ==3">三星讲师</span>
+                        <span v-if="item.star ==4">四星讲师</span>
+                        <span v-if="item.star ==5">五星讲师</span>
                     </div>
 <!--                    <div class="right02">{{item.intro}}</div>-->
                     <div class="right02">部门：{{item.depart == null?'暂无部门':item.depart}} <img v-show="item.onJob !==1" src="@/assets/out.png" alt=""></div>
-                    <div class="right03" v-if="item.star == 1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
-                    <div class="right03" v-if="item.star == 2"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
-                    <div class="right03" v-if="item.star == 3"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
-                    <div class="right03" v-if="item.star == 4"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
-                    <div class="right03" v-if="item.star == 5"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""></div>
-                    <div class="right04">分享课程：{{item.shareCount}}次</div>
+                    <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==0"><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
+                    <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
+                    <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==2"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
+                    <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==3"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
+                    <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==4"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
+                    <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==5"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""></div>
+                    <div class="right04">分享课程：{{item.courses}}次</div>
                 </div>
             </router-link>
             <div v-show="list.length==0" style="width:5rem;position: relative;margin:2rem auto 0;text-align: center;"><img src="@/assets/null.png" alt="" style="width:5rem;"></div>

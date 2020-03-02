@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="padding-bottom:1rem;background: #eee;">
+    <div class="container" style="padding-bottom:1rem;">
       <div v-show="list.length==0" style="width:5rem;position: relative;margin:2rem auto 0;text-align: center;"><img src="@/assets/null.png" alt="" style="width:5rem;"></div>
         <div class="shareMain" v-for="item in list" v-show="list.length>0">
             <div class="shareList">

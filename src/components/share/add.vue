@@ -3,7 +3,7 @@
     <div style="padding: 0 .24rem;">
       <div class="top">
         <span>类型：</span>
-        <el-radio v-model="radio" label="article">图文</el-radio>
+        <el-radio v-model="radio" label="article">文字/文件</el-radio>
         <el-radio v-model="radio" label="video">视频</el-radio>
       </div>
       <textarea class="text" placeholder="请输入您要分享的内容" v-model="content"></textarea>

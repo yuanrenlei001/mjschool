@@ -35,7 +35,7 @@
         <div class="fixed" v-show="show">
             <div class="fixedMain">
                 <div id="close" @click="close"></div>
-                <div style="padding-top: 1.5rem;" v-for="item in codes" v-if="item.name == 'teacher_5'"><span class="title">讲师分享：</span><span class="title01">公司五星讲师</span><span class="title02">{{item.value}}积分/次</span></div>
+                <div style="padding-top: 1.8rem;" v-for="item in codes" v-if="item.name == 'teacher_5'"><span class="title">讲师分享：</span><span class="title01">公司五星讲师</span><span class="title02">{{item.value}}积分/次</span></div>
                 <div v-for="item in codes" v-if="item.name == 'teacher_4'"><span class="title03">公司四星讲师</span><span class="title02">{{item.value}}积分/次</span></div>
                 <div v-for="item in codes" v-if="item.name == 'teacher_3'"><span class="title03">公司三星讲师</span><span class="title02">{{item.value}}积分/次</span></div>
                 <div v-for="item in codes" v-if="item.name == 'teacher_2'"><span class="title03">公司二星讲师</span><span class="title02">{{item.value}}积分/次</span></div>
@@ -295,7 +295,7 @@
         background: url(../../assets/img/integral/integral05.png) no-repeat;
         background-size: 5.8rem 8.1rem;padding-left: .3rem;
     }
-    .fixedMain div {margin-bottom: .16rem;font-size: .26rem;}
+    .fixedMain div {margin-bottom: .1rem;font-size: .26rem;}
     .title {font-size: .26rem;color: #4c4c4c;font-weight: 900;}
     .title01 {font-size: .24rem;color: #4c4c4c;margin: 0 .1rem;}
     .title02 {color: #fa5b55;margin-left: .1rem;}

@@ -2,7 +2,7 @@
 
     var xhr = new XMLHttpRequest();
     // var  id='231';
-    var  id=localStorage.getItem('userId')==null?'':localStorage.getItem('userId');
+    var  id=sessionStorage.getItem('userId')==null?'':sessionStorage.getItem('userId');
     var token = '';
     var that = this;
         function getCode(){
@@ -28,8 +28,8 @@
                         // alert(xhr)
                         // alert(JSON.parse(xhr.responseText).data.openId);
                         // alert(JSON.parse(xhr.responseText).data.data.openId +'22');
-                        localStorage.setItem('userId',JSON.parse(xhr.responseText).data.openId);
-                         id = localStorage.getItem('userId')
+                      sessionStorage.setItem('userId',JSON.parse(xhr.responseText).data.openId);
+                         id = sessionStorage.getItem('userId')
                         // id = JSON.parse(xhr.response).data.openId;
                         // // id = '2222';
                         // alert(id)
@@ -62,6 +62,11 @@
          if(id == ''){
             getCode();
          }
+         // if(apps == ''){
+         //   sessionStorage.setItem('userId','123')
+         // }else{
+         //   alert(1)
+         // }
     var isIos = true;
     var u = navigator.userAgent;
     var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端

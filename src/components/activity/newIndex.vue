@@ -2,7 +2,7 @@
     <div class="container">
         <div class="list">
             <div class="courseSort" v-for="item in list">
-                <router-link class="news" :to="{path: '/newsDetail', query: { id: item.id }}" >
+                <router-link class="news" :to="{path: '/newsDetailPost', query: { id: item.id }}" >
                     <div class="detail"  v-if="item.style !== 'video'">
                         <div class="left">
                             <img :src="getImg+item.frontCover" alt="" class="Img">
@@ -13,7 +13,7 @@
                             <p class="right04"><span>{{item.createTime}}</span> <span><img src="@/assets/img/index/iconSee.png" alt="">{{item.views}}</span></p>
                         </div>
                     </div>
-                    <div class="video" v-else>
+                    <div class="video" v-else style="border-bottom: 1px solid #eee;padding-bottom: .2rem;">
                         <div class="videoTop">{{item.name}}</div>
                         <div class="videoImg">
                             <img :src="getImg+item.frontCover" alt="" class="videoBg">
@@ -116,7 +116,7 @@
 
 <style scoped>
     .list {padding: 0 .24rem;}
-    .detail {width:100%;position: relative;display: block;height:1.53rem;margin-top: .4rem;}
+    .detail {width:100%;position: relative;display: block;height:1.53rem;margin-top: .4rem;border-bottom: 1px solid #eee;padding-bottom: .2rem;}
     .left {width:2.3rem;height:100%;float:left;position: relative;border-radius: .2rem;overflow: hidden;}
     .left .Img {width:2.3rem;height:100%;z-index: 1;}
     .left .active {width:1.12rem;height:.5rem;z-index: 2;position: absolute;top:-2px;left:-.1rem;}

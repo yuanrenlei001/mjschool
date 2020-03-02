@@ -152,11 +152,18 @@
 
                     }
                 }).then(res => {
-                    // console.log(res.data.data)
+                    // console.log()
                 // this.list = res.data.data;
                   let that = this;
-                    let id = res.data.data[0].id
-                  that.idsss = res.data.data[0].id
+                  // alert(that.onId)
+                    // let id = res.data.data[0].id
+                  if(res.data.data == ''){
+                    that.idsss = 0
+                  }else{
+                    that.idsss = res.data.data[0].id
+                  }
+
+
                   // localStorage.setItem('listId',id)
                   this.axios({
                     type: 'get',     // 通过设置type，来选择是get还是post请求

@@ -2,18 +2,11 @@
     <div class="container">
         <div class="content" v-show="isshow">
             <div class="title"><p>{{list.detail.name}}</p></div>
-          <div  class="list clear zbhd titleTop">
-            <div class="plTop">
-              <router-link id="pinglun" v-if="list.is_evaluate !== 1" :to="{path: '/coursePl', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:false}}">评价导师</router-link>
-              <router-link id="pinglun" v-else :to="{path: '/coursePl2', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:true}}">已评价</router-link>
-              <div class="fl"><img :src="list.detail.teacher.avatar" alt="用户" class="user"></div>
-              <div class="midRight"><div class="name limit">{{list.detail.teacher.name}}</div><div class="time">{{list.detail.teacher.createTime}}</div></div>
-            </div>
-          </div>
+
             <div class="textTime">
-<!--&lt;!&ndash;                <span>{{list.detail.teacher.name}}</span>&ndash;&gt;-->
-<!--                <span>{{list.detail.createTime}}</span>-->
-<!--                <span class="read">{{list.detail.views}}</span>-->
+<!--                <span>{{list.detail.teacher.name}}</span>-->
+                <span>{{list.detail.createTime}}</span>
+                <span class="read">{{list.detail.views}}</span>
             </div>
 
             <video v-if="list.detail.video" autoplay loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>
@@ -22,101 +15,101 @@
 
                 <div class="uecontent" v-html="list.detail.content"></div>
             </div>
-            <div class="article">
-                <div class="note" style="text-align: right;">
-<!--                    <span style="float:left;" @click="goPl()">去评价</span>-->
-                    <span v-if="is_like ==0" class="isgood good" style="margin-right: 0;line-height: 9vw;" @click="like()">{{ this.likeNum }}</span>
-                    <span v-else class="isgood good_" style="margin-right: 0;line-height: 9vw;" @click="like()" >{{ this.likeNum }}</span>
-                </div>
-            </div>
-            <div class="annex" v-show="list.files !==''">
-                <div class="annexTop" id="iconLink">附件（<span style="font-size: .22rem;">文件大于 <span style="color: #f21717;">5M</span> 安卓手机使用WPS或QQ浏览器打开</span>）</div>
-                <div class="annexSort" v-if="ispc == 1">
-                    <a   v-for="items in list.files" @click="download(items.id,items.savePath)">
-                        <img  v-if="items.ext =='doc' || items.ext =='docx'" src="@/assets/img/share/word.png" alt="">
-                        <img  v-else-if="items.ext =='xlsx' || items.ext =='xls'" src="@/assets/img/share/excel.png" alt="">
-                        <img  v-else-if="items.ext =='jpg' || items.ext =='jpeg' || items.ext =='png' || items.ext =='gif'" src="@/assets/img/share/img.png" alt="">
-                        <img  v-else-if="items.ext =='ppt'|| items.ext =='pptx'" src="@/assets/img/share/ppt.png" alt="">
-                        <img  v-else-if="items.ext =='pdf'" src="@/assets/img/share/pdf.png" alt="">
-                        <img  v-else src="@/assets/img/share/rar.png" alt="">
-                        <img v-show="(items.size/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">
-                        <p>{{items.name}}</p>
-                        <!--<img v-show="(25589/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
-                    </a>
-                    <!--<a @click="isPC()">-->
-                        <!--<img   src="@/assets/img/share/excel.png" alt="">-->
-                        <!--<p>XX文件</p>-->
-                        <!--<img v-show="(25589/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
-                    <!--</a>-->
-                    <!--<a @click="isPC()">-->
-                        <!--<img   src="@/assets/img/share/img.png" alt="">-->
-                        <!--<p>XX文件</p>-->
-                        <!--<img  class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
-                    <!--</a>-->
-                    <!--<a @click="download(items.save_path,items.id)" v-for="items in files" :href="items.save_path" download v-if="items.ext !=='rar' && items.ext !=='zip'">-->
-                        <!--<img  v-if="items.ext =='doc' || items.ext =='docx'" src="/frontend/images/news/word.png" alt="">-->
-                        <!--<img  v-else-if="items.ext =='xlsx' || items.ext =='xls'" src="/frontend/images/news/excel.png" alt="">-->
-                        <!--<img  v-else-if="items.ext =='jpg' || items.ext =='jpeg' || items.ext =='png' || items.ext =='gif'" src="/frontend/images/news/img.png" alt="">-->
-                        <!--<img  v-else-if="items.ext =='ppt'|| items.ext =='pptx'" src="/frontend/images/news/ppt.png" alt="">-->
-                        <!--<img  v-else-if="items.ext =='pdf'" src="/frontend/images/news/pdf.png" alt="">-->
-                        <!--<img  v-else-if="items.ext =='rar'|| items.ext =='zip'" src="/frontend/images/news/rar.png" alt="">-->
-                        <!--<img v-show="(items/1024/1024)>=5" class="Imgsize" src="/frontend/images/size.png" alt="">-->
-                    <!--</a>-->
-                </div>
-                <div class="annexSort" v-if="ispc == 0">
-                    <a  v-for="items in list.files" @click="download(items.id,items.savePath)">
-                        <img  v-if="items.ext =='doc' || items.ext =='docx'" src="@/assets/img/share/word.png" alt="">
-                        <img  v-else-if="items.ext =='xlsx' || items.ext =='xls'" src="@/assets/img/share/excel.png" alt="">
-                        <img  v-else-if="items.ext =='jpg' || items.ext =='jpeg' || items.ext =='png' || items.ext =='gif'" src="@/assets/img/share/img.png" alt="">
-                        <img  v-else-if="items.ext =='ppt'|| items.ext =='pptx'" src="@/assets/img/share/ppt.png" alt="">
-                        <img @click="isPC()"  v-else-if="items.ext =='pdf'" src="@/assets/img/share/pdf.png" alt="">
-                        <img  v-else src="@/assets/img/share/rar.png" alt="">
-                        <img v-show="(items.size/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">
-                        <p>{{items.name}}</p>
-                        <!--<img v-show="(25589/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
-                    </a>
-                </div>
-            </div>
-            <div id="annexMerge">
-                <div class="annexMergeTop">
-                    <div @click="Onclick($event,1)" :class="type == 1 ? 'annexActive':''" id="iconPl">评论（{{total}}）</div>
-                    <div @click="Onclick($event,2)" :class="type == 2 ? 'annexActive':''"  id="iconZan" >已赞（{{list.detail.likes}}）</div>
-                    <div @click="Onclick($event,3)" :class="type == 3 ? 'annexActive':''" id="iconSee">已读（{{list.detail.views}}）</div>
-                </div>
-                <div v-if="type == 1" class="comment bottomDiv" style="padding-bottom: 0;">
-                    <div class="lists" style="margin-top:0;">
-                        <div  class="list clear zbhd" v-for="item in comments">
-                            <div class="plTop">
-                                <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
-                                <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
-                            </div>
-                            <div class="mid"><div class="PLcontent" >{{item.content}}</div></div>
-                        </div>
-                    </div>
-                </div>
-                <!--点赞-->
-                <div v-if="type == 2" class="zan bottomDiv">
-                    <div  class="list clear zbhd" v-for="item in list.likes">
-                        <div class="plTop">
-                            <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
-                            <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
-                        </div>
-                    </div>
-                </div>
-                <!--已读人员-->
-                <div v-if="type == 3" class="zan bottomDiv">
-                      <div  class="list clear zbhd" v-for="item in list.views">
-                          <div class="plTop">
-                              <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
-                              <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
-                          </div>
-                      </div>
-                </div>
-                <div class="tip"></div>
-                <div class="loading hidden">
-                    <div class="typing_loader"></div>
-                </div>
-            </div>
+<!--            <div class="article">-->
+<!--                <div class="note" style="text-align: right;">-->
+<!--&lt;!&ndash;                    <span style="float:left;" @click="goPl()">去评价</span>&ndash;&gt;-->
+<!--                    <span v-if="is_like ==0" class="isgood good" style="margin-right: 0;line-height: 9vw;" @click="like()">{{ this.likeNum }}</span>-->
+<!--                    <span v-else class="isgood good_" style="margin-right: 0;line-height: 9vw;" @click="like()" >{{ this.likeNum }}</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="annex" v-show="list.files !==''">-->
+<!--                <div class="annexTop" id="iconLink">附件（<span style="font-size: .22rem;">文件大于 <span style="color: #f21717;">5M</span> 安卓手机使用WPS或QQ浏览器打开</span>）</div>-->
+<!--                <div class="annexSort" v-if="ispc == 1">-->
+<!--                    <a   v-for="items in list.files" @click="download(items.id,items.savePath)">-->
+<!--                        <img  v-if="items.ext =='doc' || items.ext =='docx'" src="@/assets/img/share/word.png" alt="">-->
+<!--                        <img  v-else-if="items.ext =='xlsx' || items.ext =='xls'" src="@/assets/img/share/excel.png" alt="">-->
+<!--                        <img  v-else-if="items.ext =='jpg' || items.ext =='jpeg' || items.ext =='png' || items.ext =='gif'" src="@/assets/img/share/img.png" alt="">-->
+<!--                        <img  v-else-if="items.ext =='ppt'|| items.ext =='pptx'" src="@/assets/img/share/ppt.png" alt="">-->
+<!--                        <img  v-else-if="items.ext =='pdf'" src="@/assets/img/share/pdf.png" alt="">-->
+<!--                        <img  v-else src="@/assets/img/share/rar.png" alt="">-->
+<!--                        <img v-show="(items.size/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
+<!--                        <p>{{items.name}}</p>-->
+<!--                        &lt;!&ndash;<img v-show="(25589/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">&ndash;&gt;-->
+<!--                    </a>-->
+<!--                    &lt;!&ndash;<a @click="isPC()">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img   src="@/assets/img/share/excel.png" alt="">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<p>XX文件</p>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img v-show="(25589/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">&ndash;&gt;-->
+<!--                    &lt;!&ndash;</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<a @click="isPC()">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img   src="@/assets/img/share/img.png" alt="">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<p>XX文件</p>&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img  class="Imgsize" src="@/assets/img/share/size.png" alt="">&ndash;&gt;-->
+<!--                    &lt;!&ndash;</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<a @click="download(items.save_path,items.id)" v-for="items in files" :href="items.save_path" download v-if="items.ext !=='rar' && items.ext !=='zip'">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img  v-if="items.ext =='doc' || items.ext =='docx'" src="/frontend/images/news/word.png" alt="">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img  v-else-if="items.ext =='xlsx' || items.ext =='xls'" src="/frontend/images/news/excel.png" alt="">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img  v-else-if="items.ext =='jpg' || items.ext =='jpeg' || items.ext =='png' || items.ext =='gif'" src="/frontend/images/news/img.png" alt="">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img  v-else-if="items.ext =='ppt'|| items.ext =='pptx'" src="/frontend/images/news/ppt.png" alt="">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img  v-else-if="items.ext =='pdf'" src="/frontend/images/news/pdf.png" alt="">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img  v-else-if="items.ext =='rar'|| items.ext =='zip'" src="/frontend/images/news/rar.png" alt="">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<img v-show="(items/1024/1024)>=5" class="Imgsize" src="/frontend/images/size.png" alt="">&ndash;&gt;-->
+<!--                    &lt;!&ndash;</a>&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="annexSort" v-if="ispc == 0">-->
+<!--                    <a  v-for="items in list.files" @click="download(items.id,items.savePath)">-->
+<!--                        <img  v-if="items.ext =='doc' || items.ext =='docx'" src="@/assets/img/share/word.png" alt="">-->
+<!--                        <img  v-else-if="items.ext =='xlsx' || items.ext =='xls'" src="@/assets/img/share/excel.png" alt="">-->
+<!--                        <img  v-else-if="items.ext =='jpg' || items.ext =='jpeg' || items.ext =='png' || items.ext =='gif'" src="@/assets/img/share/img.png" alt="">-->
+<!--                        <img  v-else-if="items.ext =='ppt'|| items.ext =='pptx'" src="@/assets/img/share/ppt.png" alt="">-->
+<!--                        <img @click="isPC()"  v-else-if="items.ext =='pdf'" src="@/assets/img/share/pdf.png" alt="">-->
+<!--                        <img  v-else src="@/assets/img/share/rar.png" alt="">-->
+<!--                        <img v-show="(items.size/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
+<!--                        <p>{{items.name}}</p>-->
+<!--                        &lt;!&ndash;<img v-show="(25589/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">&ndash;&gt;-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div id="annexMerge">-->
+<!--                <div class="annexMergeTop">-->
+<!--                    <div @click="Onclick($event,1)" :class="type == 1 ? 'annexActive':''" id="iconPl">评论（{{total}}）</div>-->
+<!--                    <div @click="Onclick($event,2)" :class="type == 2 ? 'annexActive':''"  id="iconZan" >已赞（{{list.detail.likes}}）</div>-->
+<!--                    <div @click="Onclick($event,3)" :class="type == 3 ? 'annexActive':''" id="iconSee">已读（{{list.detail.views}}）</div>-->
+<!--                </div>-->
+<!--                <div v-if="type == 1" class="comment bottomDiv" style="padding-bottom: 0;">-->
+<!--                    <div class="lists" style="margin-top:0;">-->
+<!--                        <div  class="list clear zbhd" v-for="item in comments">-->
+<!--                            <div class="plTop">-->
+<!--                                <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>-->
+<!--                                <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>-->
+<!--                            </div>-->
+<!--                            <div class="mid"><div class="PLcontent" >{{item.content}}</div></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;点赞&ndash;&gt;-->
+<!--                <div v-if="type == 2" class="zan bottomDiv">-->
+<!--                    <div  class="list clear zbhd" v-for="item in list.likes">-->
+<!--                        <div class="plTop">-->
+<!--                            <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>-->
+<!--                            <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;已读人员&ndash;&gt;-->
+<!--                <div v-if="type == 3" class="zan bottomDiv">-->
+<!--                      <div  class="list clear zbhd" v-for="item in list.views">-->
+<!--                          <div class="plTop">-->
+<!--                              <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>-->
+<!--                              <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>-->
+<!--                          </div>-->
+<!--                      </div>-->
+<!--                </div>-->
+<!--                <div class="tip"></div>-->
+<!--                <div class="loading hidden">-->
+<!--                    <div class="typing_loader"></div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         <div class="fixed" v-show="fixedShadow">
             <div class="fixedBody">
@@ -137,7 +130,7 @@
             </div>
         </div>
         <!--<div v-if="scroll == false"  v-show="list.length>10" class="nulls" style="font-size: .36rem;color: #666;text-align: center;line-height: 1rem;">暂无数据</div>-->
-        <div @click="send()" class="bottom clear"><div class="myword fl"><input type="text" placeholder="说说你的感想！" disabled="disabled"></div></div>
+<!--        <div @click="send()" class="bottom clear"><div class="myword fl"><input type="text" placeholder="说说你的感想！" disabled="disabled"></div></div>-->
     </div>
 </template>
 
@@ -257,7 +250,7 @@
             activityDetail:function(){
                 this.axios({
                     type: 'post',     // 通过设置type，来选择是get还是post请求
-                    url: this.getAjax+'/course/detail/'+this.id+'?openId='+this.openId,    // 访问的后端接口地址
+                    url: this.getAjax+'/post/detail/'+this.id+'?openId='+this.openId,    // 访问的后端接口地址
                     // url: this.getAjax+'/newsRotatePic.do',    // 访问的后端接口地址
                     params: {                // get请求使用params,post请求使用data(data为json格式)
 

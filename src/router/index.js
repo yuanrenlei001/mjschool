@@ -13,6 +13,7 @@ import myShare from '@/components/user/myShare'
 import information from '@/components/user/information'
 import Course from '@/components/course/index'
 import newsDetail from '@/components/course/detail'
+import newsDetailPost from '@/components/course/detailpost'
 import CourseList from '@/components/course/list'
 import Teacher from '@/components/teacher/index'
 import TeachDetail from '@/components/teacher/detail'
@@ -27,6 +28,7 @@ import ActivityDetail from '@/components/activity/detail'
 import Evaluation from '@/components/activity/evaluation'
 import evaluateList from '@/components/activity/evaluateList'
 import coursePl from '@/components/course/coursePl'
+import coursePl2 from '@/components/course/coursePl2'
 import causeList from '@/components/activity/causeList'
 import SignUp from '@/components/activity/signUp'
 import CodeUp from '@/components/activity/codeUp'
@@ -48,6 +50,7 @@ export default new Router({
       {path: '/myShare', name: 'myShare', component: myShare, meta: {title: '我的分享'}},
       {path: '/course', name: 'Course', component: Course, meta: {title: '精品课程'}},
       {path: '/newsDetail', name: 'newsDetail', component: newsDetail, meta: {title: '详情'}},
+      {path: '/newsDetailPost', name: 'newsDetailPost', component: newsDetailPost, meta: {title: '活动展示'}},
       {path: '/courseList', name: 'CourseList', component: CourseList, meta: {title: '发现课程'}},
       {path: '/teacher', name: 'Teacher', component: Teacher, meta: {title: '名师专栏'}},
       {path: '/detail', name: 'TeachDetail', component: TeachDetail, meta: {title: '名师详情'}},
@@ -55,13 +58,14 @@ export default new Router({
       {path: '/integral', name: 'Integral', component: Integral, meta: {title: '积分排行'}},
       {path: '/shareing', name: 'Shareing', component: Shareing, meta: {title: '分享排行榜'}},
       {path: '/learning', name: 'Learning', component: Learning, meta: {title: '学习排行榜'}},
-      {path: '/activity', name: 'Activity', component: Activity, meta: {title: '近期课程'}},
+      {path: '/activity', name: 'Activity', component: Activity, meta: {title: '近期活动'}},
       {path: '/coursedetails', name: 'coursedetail', component: coursedetails, meta: {title: '近期活动'}},
       {path: '/newActivity', name: 'newActivity', component: newActivity, meta: {title: '活动列表'}},
-      {path: '/activityDetail', name: 'ActivityDetail', component: ActivityDetail, meta: {title: '活动详情'}},
+      {path: '/activityDetail', name: 'ActivityDetail', component: ActivityDetail, meta: {title: '近期活动'}},
       {path: '/evaluation', name: 'Evaluation', component: Evaluation, meta: {title: '讲师评价'}},
       {path: '/evaluateList', name: 'evaluateList', component: evaluateList, meta: {title: '讲师评价列表'}},
       {path: '/coursePl', name: 'coursePl', component: coursePl, meta: {title: '导师评价'}},
+      {path: '/coursePl2', name: 'coursePl2', component: coursePl2, meta: {title: '查看评价'}},
       {path: '/causeList', name: 'causeList', component: causeList, meta: {title: '课程评价'}},
       {path: '/signUp', name: 'SignUp', component: SignUp, meta: {title: '报名详情'}},
       {path: '/codeUp', name: 'CodeUp', component: CodeUp, meta: {title: '签到详情'}},
