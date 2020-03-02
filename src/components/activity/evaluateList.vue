@@ -59,8 +59,8 @@
                 list:'',
                 pageSize:6,
                 pageNum:1,
-                id:125,
-                // id:this.$route.query.id,
+                // id:125,
+                id:this.$route.query.id,
                 openId:this.userId,
                 keyword:{}
             };

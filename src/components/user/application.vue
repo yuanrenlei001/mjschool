@@ -26,7 +26,12 @@
         </div>
         <div class="btns" @click="getApply()">确认</div>
         <div class="fixed" v-show="pl">
-            <div class="alert">
+            <div class="alert" v-if="ispc" style="margin: 1rem auto 0;">
+                <div class="titles">提 示</div>
+                <div class="alerts">{{plText}}</div>
+                <div class="alertBtn" @click="alertBtn()">确定</div>
+            </div>
+            <div class="alert" v-else>
                 <div class="titles">提 示</div>
                 <div class="alerts">{{plText}}</div>
                 <div class="alertBtn" @click="alertBtn()">确定</div>
@@ -52,13 +57,18 @@
                 openId:this.userId,
                 text:'',
                 pl:false,
-                plText:''
+                plText:'',
+                ispc:''
             };
         },
         components: {
             minShopBar
         },
         methods:{
+            _isMobile(){
+                let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+                this.ispc = flag?false:true
+            },
             getApply:function(){
                 let that = this;
                 const Qs = require('qs');
@@ -93,6 +103,7 @@
         created(){
         },
         mounted(){
+            this._isMobile();
         }
     }
 </script>

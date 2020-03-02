@@ -1322,6 +1322,17 @@
             }else if(i==15){
               obj[that.keyword[15].keyword] = that.textPL15
             }
+            else if(i==16){
+                obj[that.keyword[16].keyword] = that.textPL16
+            }else if(i==17){
+                obj[that.keyword[17].keyword] = that.textPL17
+            }else if(i==18){
+                obj[that.keyword[18].keyword] = that.textPL18
+            }else if(i==19){
+                obj[that.keyword[19].keyword] = that.textPL19
+            }else if(i==20){
+                obj[that.keyword[20].keyword] = that.textPL20
+            }
 
 
 

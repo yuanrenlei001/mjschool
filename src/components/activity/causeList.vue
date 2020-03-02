@@ -40,7 +40,12 @@
         </div>
         <div class="btns"><div class="btn" @click="evaluate()">提交</div></div>
         <div class="fixed" v-show="pl">
-            <div class="alert">
+            <div class="alert" v-if="ispc" style="margin: 1rem auto 0;">
+                <div class="titles">提 示</div>
+                <div class="alerts">{{plText}}</div>
+                <div class="alertBtn" @click="alertBtn()">确定</div>
+            </div>
+            <div class="alert" v-else>
                 <div class="titles">提 示</div>
                 <div class="alerts">{{plText}}</div>
                 <div class="alertBtn" @click="alertBtn()">确定</div>
@@ -124,13 +129,18 @@
                 keyword:[],
                 pl:false,
                 plText:'',
-                add:[{name:''}]
+                add:[{name:''}],
+                ispc:''
             };
         },
         components: {
             minShopBar
         },
         methods:{
+            _isMobile(){
+                let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+                this.ispc = flag?false:true
+            },
             //评分
             rating: function(index) {
                 var total = this.stars0.length; //星星总数
@@ -328,6 +338,7 @@
         },
         mounted(){
             this.question();
+            this._isMobile();
         }
     }
 </script>
