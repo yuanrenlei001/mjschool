@@ -8,7 +8,7 @@
             <router-link class="sortDetail" to="/newActivity"><img src="@/assets/img/index/hdzs.png" alt=""> <p>活动展示</p></router-link>
         </div>
         <div class="show">
-<!--          <router-link to="/code">12312312</router-link>-->
+<!--          <router-link to="/text">12312312</router-link>-->
             <div class="course">
                 <div class="courseTop">近期课程 <router-link class="more" to="/activity">更多 <img src="@/assets/img/right.png" alt=""></router-link></div>
                 <div class="courseSort">

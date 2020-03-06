@@ -1516,7 +1516,7 @@
     color: #4c4c4c;
     top: -.08rem;
     float: left;
-    width: 2.8rem;
+    width: 4.2rem;
     white-space: nowrap;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;

@@ -1,8 +1,6 @@
 <template>
     <div class="container" style="padding-bottom: 1.5rem;">
-        <div class="parentOne">
-            <children-item :content="item" v-for="item in list" :key="item.id"></children-item>
-        </div>
+      12312
     </div>
 </template>
 

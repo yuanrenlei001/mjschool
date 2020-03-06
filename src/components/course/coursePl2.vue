@@ -501,7 +501,7 @@
   .form-group img {width:.35rem;height:.33rem;}
   .control-label {color: #f4a409;font-size: .28rem;top:-.08rem;float:right;}
   .col-md-8 {margin:0 auto;position: relative;font-size: .24rem;display: block;}
-  .control-labels {font-size: .28rem;color: #4c4c4c;top:-.08rem;float:left;width:2.8rem;
+  .control-labels {font-size: .28rem;color: #4c4c4c;top:-.08rem;float:left;width:4.2rem;
     white-space:nowrap;
     text-overflow:ellipsis;
     -o-text-overflow:ellipsis;

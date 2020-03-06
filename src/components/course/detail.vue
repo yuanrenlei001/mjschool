@@ -4,12 +4,16 @@
             <div class="title"><p>{{list.detail.name}}</p></div>
           <div  class="list clear zbhd titleTop">
             <div class="plTop">
-              <router-link id="pinglun" v-if="list.is_evaluate !== 1" :to="{path: '/coursePl', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:false}}">评价导师</router-link>
-              <router-link id="pinglun" v-else :to="{path: '/coursePl2', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:true}}">已评价</router-link>
-              <div class="fl"><img :src="list.detail.teacher.avatar" alt="用户" class="user"></div>
-              <div class="midRight"><div class="name limit">{{list.detail.teacher.name}}</div><div class="time">{{list.detail.teacher.createTime}}</div></div>
+<!--              <router-link id="pinglun" v-if="list.is_evaluate !== 1" :to="{path: '/coursePl', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:false}}">评价导师</router-link>-->
+<!--              <router-link id="pinglun" v-else :to="{path: '/coursePl2', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:true}}">已评价</router-link>-->
+<!--              <div class="fl"><img :src="list.detail.teacher.avatar" alt="用户" class="user"></div>-->
+              <div class="midRight">
+                <div class="name limit"><img :src="list.detail.teacher.avatar" alt="用户" class="user">{{list.detail.teacher.name}}</div>
+<!--                <div class="time">{{list.detail.teacher.createTime}}</div>-->
+              </div>
             </div>
           </div>
+<!--          <canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>-->
             <div class="textTime">
 <!--&lt;!&ndash;                <span>{{list.detail.teacher.name}}</span>&ndash;&gt;-->
 <!--                <span>{{list.detail.createTime}}</span>-->
@@ -22,8 +26,10 @@
 
                 <div class="uecontent" v-html="list.detail.content"></div>
             </div>
-            <div class="article">
+            <div class="article" style="position: relative;">
                 <div class="note" style="text-align: right;">
+                                <router-link id="pinglun" v-if="list.is_evaluate !== 1" :to="{path: '/coursePl', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:false}}">评价导师</router-link>
+                                <router-link id="pinglun" v-else :to="{path: '/coursePl2', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:true}}">已评价</router-link>
 <!--                    <span style="float:left;" @click="goPl()">去评价</span>-->
                     <span v-if="is_like ==0" class="isgood good" style="margin-right: 0;line-height: 9vw;" @click="like()">{{ this.likeNum }}</span>
                     <span v-else class="isgood good_" style="margin-right: 0;line-height: 9vw;" @click="like()" >{{ this.likeNum }}</span>
@@ -65,6 +71,7 @@
                 </div>
                 <div class="annexSort" v-if="ispc == 0">
                     <a  v-for="items in list.files" @click="download(items.id,items.savePath)">
+<!--                    <a  v-for="items in list.files" target='_black'  :href='http://view.officeapps.live.com/op/view.aspx?src=$'>-->
                         <img  v-if="items.ext =='doc' || items.ext =='docx'" src="@/assets/img/share/word.png" alt="">
                         <img  v-else-if="items.ext =='xlsx' || items.ext =='xls'" src="@/assets/img/share/excel.png" alt="">
                         <img  v-else-if="items.ext =='jpg' || items.ext =='jpeg' || items.ext =='png' || items.ext =='gif'" src="@/assets/img/share/img.png" alt="">
@@ -149,6 +156,7 @@
 <script>
     import minShopBar  from '@/components/tabBar'
     import {videoPlayer} from 'vue-video-player'
+    import {pdf} from 'pdfjs-dist'
     // import  Alert  from 'vux'
     export default {
         name: "index",
@@ -175,19 +183,58 @@
                 pageSize:10,
                 pageNum:1,
                 pl:false,
-                plText:''
+                plText:'',
+              urlsss:''
 
             };
         },
         components: {
             minShopBar,
-          videoPlayer
+          videoPlayer,
+          pdf
             // Alert
         },
         created() {
             window.addEventListener('scroll', this.onScroll);
         },
         methods:{
+          _renderPage (num) {
+            this.pdfDoc.getPage(num).then((page) => {
+              let canvas = document.getElementById('the-canvas' + num)
+              let ctx = canvas.getContext('2d')
+              let dpr = window.devicePixelRatio || 1
+              let bsr = ctx.webkitBackingStorePixelRatio ||
+                ctx.mozBackingStorePixelRatio ||
+                ctx.msBackingStorePixelRatio ||
+                ctx.oBackingStorePixelRatio ||
+                ctx.backingStorePixelRatio || 1
+              let ratio = dpr / bsr
+              let viewport = page.getViewport(screen.availWidth / page.getViewport(1).width)
+              canvas.width = viewport.width * ratio
+              canvas.height = viewport.height * ratio
+              canvas.style.width = viewport.width + 'px'
+              canvas.style.height = viewport.height + 'px'
+              ctx.setTransform(ratio, 0, 0, ratio, 0, 0)
+              let renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+              }
+              page.render(renderContext)
+              if (this.pages > num) {
+                this._renderPage(num + 1)
+              }
+            })
+          },
+          _loadFile (url) {
+            PDFJS.getDocument(url).then((pdf) => {
+              this.pdfDoc = pdf
+              console.log(pdf)
+              this.pages = this.pdfDoc.numPages
+              this.$nextTick(() => {
+                this._renderPage(1)
+              })
+            })
+          },
           evaluate:function(id){
               this.$router.push({path:'/coursePl',query:{id:id}})
           },
@@ -385,13 +432,16 @@
             },
             download(id,path){
                 console.log(id)
-                location.href=this.getImg+path
+                // location.href=this.getImg+path
+              window.open(this.getImg+path)
             }
         },
         mounted(){
             this._isMobile();
             this.activityDetail();
             this.comment();
+            this.urlsss= this.getImg+'/uploads/20200302/1583117050281_客满物流知识分享.pptx'
+          // this._loadFile(this.getImg+'/uploads/20200302/1583117050281_客满物流知识分享.pptx')
         }
     }
 </script>
@@ -400,8 +450,8 @@
   .titleTop .plTop {width:80%;position: relative;margin: -.2rem auto 0;padding-bottom: 5px;}
   #pinglun {
     position: absolute;
-    top:.2rem;
-    right:0;
+    top:0;
+    left:50%;
     font-size: .26rem;
     /*border: 1px solid #999;*/
     width:1.6rem;
@@ -409,18 +459,19 @@
     text-align: center;
     line-height: .5rem;
     border-radius: .2rem;
+    margin-left: -.8rem;
 
     color: #fff;
     background: #fa5b55;
-    margin: auto;
   }
   .titleTop img {
     width: .74rem;
     height: .74rem;
-    margin-top: 3.4vw;
+    /*margin-top: 3.4vw;*/
     margin-right: 3vw;
     overflow: hidden;
     border-radius: 50%;
+    vertical-align: middle;
   }
     /*.content .articleText p img*/
     .uecontent >>> img{width:100%;}
@@ -566,12 +617,9 @@
         color: #333;
         font-weight: 600;
         text-align: center;
-        display: -webkit-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        word-break: break-all;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
     }
     .textTime {height:.68rem;line-height: .68rem;font-size: .26rem;color: #666;text-align: center;}
     .read {
@@ -811,7 +859,9 @@
     }
     .fl {float:left;font-size: .26rem;}
     .lists {margin-top: -4vw;}
-    .midRight .name {font-size: .26rem;color: #4c4c4c;padding-top: .3rem;}
+    .midRight .name {font-size: .26rem;color: #4c4c4c;
+      line-height: 1rem;text-align: center;
+    }
     .midRight .time {font-size: .26rem;color: #808080;}
     /*评论*/
     .ready .list ,.zan .list {
