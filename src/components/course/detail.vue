@@ -13,16 +13,24 @@
               </div>
             </div>
           </div>
+          <div><img v-for="item in list.on_doc" :src="getImg+item" alt="" style="width:100%;"></div>
 <!--          <canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>-->
             <div class="textTime">
 <!--&lt;!&ndash;                <span>{{list.detail.teacher.name}}</span>&ndash;&gt;-->
 <!--                <span>{{list.detail.createTime}}</span>-->
 <!--                <span class="read">{{list.detail.views}}</span>-->
             </div>
-
-            <video v-if="list.detail.video" autoplay loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>
+          <video-player
+            style="margin-bottom: .2rem;"
+            v-if="list.detail.video"
+            class="video-player vjs-custom-skin"
+                         ref="videoPlayer"
+                         :playsinline="true"
+                         :options="playerOptions"
+          ></video-player>
+<!--            <video v-if="list.detail.video" autoplay loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>-->
             <audio v-if="list.detail.audio" :src="getImg+list.detail.audio"  controls style="position: relative;width:80%;left:10%;">    </audio>
-            <div class="articleText">
+            <div class="articleText" >
 
                 <div class="uecontent" v-html="list.detail.content"></div>
             </div>
@@ -95,7 +103,7 @@
                         <div  class="list clear zbhd" v-for="item in comments">
                             <div class="plTop">
                                 <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
-                                <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
+                                <div class="midRight"><div class="name limit" style="text-align: left;">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
                             </div>
                             <div class="mid"><div class="PLcontent" >{{item.content}}</div></div>
                         </div>
@@ -106,7 +114,7 @@
                     <div  class="list clear zbhd" v-for="item in list.likes">
                         <div class="plTop">
                             <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
-                            <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
+                            <div class="midRight"><div class="name limit" style="text-align: left;">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
                         </div>
                     </div>
                 </div>
@@ -115,7 +123,7 @@
                       <div  class="list clear zbhd" v-for="item in list.views">
                           <div class="plTop">
                               <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
-                              <div class="midRight"><div class="name limit">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
+                              <div class="midRight"><div class="name limit" style="text-align: left;">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
                           </div>
                       </div>
                 </div>
@@ -184,7 +192,31 @@
                 pageNum:1,
                 pl:false,
                 plText:'',
-              urlsss:''
+              url:'',
+              urlsss:'',
+              playerOptions : {
+                playbackRates: [1.0], //播放速度
+                autoplay: false, //如果true,浏览器准备好时开始回放。
+                muted: false, // 默认情况下将会消除任何音频。
+                loop: false, // 导致视频一结束就重新开始。
+                preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+                language: 'zh-CN',
+                aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+                fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+                sources: [{
+                  type: "video/mp4",//这里的种类支持很多种：基本视频格式、直播、流媒体等，具体可以参看git网址项目
+                  src: '' //url地址
+                }],
+                poster: "", //你的封面地址
+                // width: document.documentElement.clientWidth, //播放器宽度
+                notSupportedMessage: '此视频暂无法播放，请稍后再试', //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+                controlBar: {
+                  timeDivider: true,
+                  durationDisplay: true,
+                  remainingTimeDisplay: false,
+                  fullscreenToggle: true  //全屏按钮
+                }
+              }
 
             };
         },
@@ -317,7 +349,7 @@
                 }).then(res => {
                     this.list = res.data.data;
                     this.isshow = true;
-                    console.log(this.list)
+                  this.playerOptions['sources'][0]['src'] = this.getImg+this.list.detail.video;
                     this.is_like = this.list.is_like
                     this.likeNum = this.list.detail.likes
                 }).catch(err => {
@@ -804,6 +836,7 @@
     }
     .midRight {
         height:1rem;
+      position: relative;
     }
     .comment .lists .list .mid .PLcontent {
         width: 100%;
@@ -862,7 +895,7 @@
     .midRight .name {font-size: .26rem;color: #4c4c4c;
       line-height: 1rem;text-align: center;
     }
-    .midRight .time {font-size: .26rem;color: #808080;}
+    .midRight .time {font-size: .26rem;color: #808080;position: absolute;bottom: 0;left:1rem;}
     /*评论*/
     .ready .list ,.zan .list {
         width: 100%;
@@ -954,6 +987,7 @@
     }
     .midRight {
         height:1rem;
+      position: relative;
     }
     .zan .list .mid .PLcontent {
         width: 100%;

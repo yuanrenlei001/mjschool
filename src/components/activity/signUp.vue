@@ -1,6 +1,10 @@
 <template>
     <div class="container" style="padding-bottom: 1.2rem;">
-        <div class="list" v-for="item in list.applies"><img :src="item.user.avatar" alt=""><span>{{item.user.name}}</span><span>{{item.createTime}}</span></div>
+        <div class="list" v-for="item in list.applies">
+          <img :src="item.user.avatar" alt="">
+          <span style="position: relative;top:-.2rem;">{{item.user.name}}</span>
+          <span>{{item.createTime}}</span>
+        </div>
     </div>
 </template>
 

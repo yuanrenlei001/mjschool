@@ -8,7 +8,7 @@
                 <span>{{list.detail.createTime}}</span>
                 <span class="read">{{list.detail.views}}</span>
             </div>
-
+          <div><img v-for="item in list.on_doc" :src="getImg+item" alt="" style="width:100%;"></div>
             <video v-if="list.detail.video" autoplay loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>
             <audio v-if="list.detail.audio" :src="getImg+list.detail.audio"  controls style="position: relative;width:80%;left:10%;">    </audio>
             <div class="articleText">
