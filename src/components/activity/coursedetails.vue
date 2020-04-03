@@ -2,12 +2,19 @@
     <div class="container">
         <div class="courseSort" v-for="item in list" v-show="list.length>0">
             <router-link class="detail" :to="{path: '/activityDetail', query: { id: item.id }}" >
-                <div class="left">
-                    <img :src="getImg+item.frontCover" alt="" class="Img">
+                <div class="left" v-if="item.frontCover ==''">
+                  <img src="@/assets/null.jpg" alt="" class="Img">
+<!--                    <img :src="getImg+item.frontCover" alt="" class="Img">-->
                     <img v-show="item.status == 0" src="@/assets/img/index/bmz.png" alt="" class="active">
                     <img v-show="item.status == 1" src="@/assets/img/index/jxz.png" alt="" class="active">
                     <img v-show="item.status == 2" src="@/assets/img/index/yjs.png" alt="" class="active">
                 </div>
+              <div class="left" v-else>
+                <img :src="getImg+item.frontCover" alt="" class="Img">
+                <img v-show="item.status == 0" src="@/assets/img/index/bmz.png" alt="" class="active">
+                <img v-show="item.status == 1" src="@/assets/img/index/jxz.png" alt="" class="active">
+                <img v-show="item.status == 2" src="@/assets/img/index/yjs.png" alt="" class="active">
+              </div>
                 <div class="right">
                     <p class="right01">{{item.name}}</p>
                     <p class="right02"><img src="@/assets/img/index/iconTime.png" alt=""><span>{{item.startAt}}</span></p>

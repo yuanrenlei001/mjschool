@@ -2,9 +2,10 @@
     <div class="container" style="padding-bottom: 1rem;">
         <div v-show="list.length==0" style="width:5rem;position: relative;margin:2rem auto 0;text-align: center;"><img src="@/assets/null.png" alt="" style="width:5rem;"></div>
         <div class="courseSort" v-for="item in list">
-            <router-link class="detail" :to="{path: '/activityDetail', query: { id: item.activity.id }}" >
+            <router-link class="detail" :to="{path: '/activityDetail', query: { id: item.activity.id }}" v-if="item.activity.frontCover == ''">
                 <div class="left">
-                    <img :src="getImg+item.activity.frontCover" alt="" class="Img">
+<!--                    <img :src="getImg+item.activity.frontCover" alt="" class="Img">-->
+                  <img src="@/assets/null.jpg" alt="" class="Img">
                     <img v-show="item.status == 0" src="@/assets/img/index/bmz.png" alt="" class="active">
                     <img v-show="item.status == 1" src="@/assets/img/index/jxz.png" alt="" class="active">
                     <img v-show="item.status == 2" src="@/assets/img/index/yjs.png" alt="" class="active">
@@ -15,6 +16,19 @@
                     <p class="right03"><img src="@/assets/img/index/iconAddress.png" alt="">{{item.activity.address}}</p>
                 </div>
             </router-link>
+          <router-link class="detail" :to="{path: '/activityDetail', query: { id: item.activity.id }}" v-else>
+            <div class="left">
+              <img :src="getImg+item.activity.frontCover" alt="" class="Img">
+              <img v-show="item.status == 0" src="@/assets/img/index/bmz.png" alt="" class="active">
+              <img v-show="item.status == 1" src="@/assets/img/index/jxz.png" alt="" class="active">
+              <img v-show="item.status == 2" src="@/assets/img/index/yjs.png" alt="" class="active">
+            </div>
+            <div class="right">
+              <p class="right01">{{item.activity.name}}</p>
+              <p class="right02"><img src="@/assets/img/index/iconTime.png" alt=""><span>{{item.activity.startAt}}</span></p>
+              <p class="right03"><img src="@/assets/img/index/iconAddress.png" alt="">{{item.activity.address}}</p>
+            </div>
+          </router-link>
         </div>
 <!--        <div v-show="list.length==0" style="width:5rem;position: relative;margin:2rem auto 0;text-align: center;"><img src="@/assets/null.png" alt="" style="width:5rem;"></div>-->
         <div v-if="scroll == false"  v-show="list.length>10" class="nulls" style="font-size: .36rem;color: #666;text-align: center;line-height: 1rem;">暂无数据</div>

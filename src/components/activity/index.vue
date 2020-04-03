@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <div class="courseSort" v-for="item in list" v-show="list.length>0">
-            <router-link class="detail" :to="{path: '/activityDetail', query: { id: item.id }}" >
+            <router-link class="detail" :to="{path: '/activityDetail', query: { id: item.id }}" v-if="item.frontCover == ''">
                 <div class="left">
-                    <img :src="getImg+item.frontCover" alt="" class="Img">
+                    <img src="@/assets/null.jpg" alt="" class="Img">
                     <img v-show="item.status == 0" src="@/assets/img/index/bmz.png" alt="" class="active">
                     <img v-show="item.status == 1" src="@/assets/img/index/jxz.png" alt="" class="active">
                     <img v-show="item.status == 2" src="@/assets/img/index/yjs.png" alt="" class="active">
@@ -14,6 +14,19 @@
                     <p class="right03"><img src="@/assets/img/index/iconAddress.png" alt="">{{item.address}}</p>
                 </div>
             </router-link>
+          <router-link class="detail" :to="{path: '/activityDetail', query: { id: item.id }}" v-else >
+            <div class="left">
+              <img :src="getImg+item.frontCover" alt="" class="Img">
+              <img v-show="item.status == 0" src="@/assets/img/index/bmz.png" alt="" class="active">
+              <img v-show="item.status == 1" src="@/assets/img/index/jxz.png" alt="" class="active">
+              <img v-show="item.status == 2" src="@/assets/img/index/yjs.png" alt="" class="active">
+            </div>
+            <div class="right">
+              <p class="right01">{{item.name}}</p>
+              <p class="right02"><img src="@/assets/img/index/iconTime.png" alt=""><span>{{item.startAt}}</span></p>
+              <p class="right03"><img src="@/assets/img/index/iconAddress.png" alt="">{{item.address}}</p>
+            </div>
+          </router-link>
         </div>
         <div v-show="list.length==0" style="width:5rem;position: relative;margin:2rem auto 0;text-align: center;"><img src="@/assets/null.png" alt="" style="width:5rem;"></div>
         <div v-show="list.length>=10" v-if="scroll == false" class="nulls" style="font-size: .36rem;color: #666;text-align: center;line-height: 1rem;">暂无数据</div>

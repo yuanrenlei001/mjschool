@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <div class="top"><img :src="getImg+list.detail.frontCover" alt=""></div>
+<!--        <div class="top">-->
+<!--&lt;!&ndash;          <img :src="getImg+list.detail.frontCover" alt="">&ndash;&gt;-->
+<!--        </div>-->
         <div class="main">
             <p class="title">{{list.detail.name}}</p>
             <div class="sort">
@@ -12,7 +14,7 @@
             </div>
         </div>
 
-        <div class="text">导师简介</div>
+        <div class="text">讲师简介</div>
         <div  v-show="list.courses.length == 1">
             <div class="sorts" style="padding: 0 .24rem;height:2.74rem;background:#fff;">
                 <router-link class="teacher" :to="{path: '/detail', query: { id:list.courses[0].detail.teacherId }}" >
@@ -25,7 +27,9 @@
                             <span v-if="list.courses[0].detail.teacher.star == 4">四星讲师</span>
                             <span v-if="list.courses[0].detail.teacher.star == 5">五星讲师</span>
                         </div>
-                        <div class="right02">{{list.courses[0].detail.teacher.intro}}</div>
+                      <div class="right02" v-if="list.courses[0].detail.teacher.onJob == 0">部门： <img src="@/assets/out.png" alt=""></div>
+                      <div class="right02" v-if="list.courses[0].detail.teacher.onJob == 2">外部讲师</div>
+                      <div class="right02" v-if="list.courses[0].detail.teacher.onJob == 1">部门：{{!list.courses[0].detail.teacher.departD?'':list.courses[0].detail.teacher.departD.name}}</div>
                         <div class="right03">
                           <div class="right03" v-if="(list.courses[0].detail.teacher.score==0?0:Math.round(list.courses[0].detail.teacher.score/list.courses[0].detail.teacher.scoreTotal)) ==0"><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                           <div class="right03" v-if="(list.courses[0].detail.teacher.score==0?0:Math.round(list.courses[0].detail.teacher.score/list.courses[0].detail.teacher.scoreTotal)) ==1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
@@ -57,7 +61,9 @@
                                 <span v-if="item.detail.teacher.star == 4">四星讲师</span>
                                 <span v-if="item.detail.teacher.star == 5">五星讲师</span>
                             </div>
-                            <div class="right02">{{item.detail.teacher.intro}}</div>
+                          <div class="right02" v-if="item.detail.teacher.onJob == 0">部门： <img src="@/assets/out.png" alt=""></div>
+                          <div class="right02" v-if="item.detail.teacher.onJob == 2">外部讲师</div>
+                          <div class="right02" v-if="item.detail.teacher.onJob == 1">部门：{{!item.detail.teacher.departD?'':item.detail.teacher.departD.name}}</div>
                           <div class="right03">
                             <div class="right03" v-if="(item.detail.teacher.score==0?0:Math.round(item.detail.teacher.score/item.detail.teacher.scoreTotal)) ==0"><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                             <div class="right03" v-if="(item.detail.teacher.score==0?0:Math.round(item.detail.teacher.score/item.detail.teacher.scoreTotal)) ==1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
@@ -71,7 +77,7 @@
                     </router-link>
                 </swiper-slide>
                 </swiper>
-                <div class="text">活动描述</div>
+                <div class="text">内容简介</div>
                 <div class="html">
                     <div style="text-align: justify;" v-html="list.detail.description"></div>
                 </div>
@@ -93,7 +99,7 @@
                 </ul>
             </div>
         </div>
-        <div class="btns" v-if="list.is_apply == 0 && list.status == 0" ><div class="btn" @click="apply()">立即参加</div></div>
+        <div class="btns" v-if="list.is_apply == 0 && list.status == 0" ><div class="btn" @click="apply()">报名</div></div>
         <div class="btns" v-if="list.is_apply == 1 && list.status == 0"><div class="btn" @click="unApply()">取消报名</div></div>
         <div class="btns" v-if="list.status == 1"><div class="btn" @click="code(list.detail.id,list.is_sign)">{{list.is_sign == 0?'签到':'已签到'}}</div></div>
         <div class="btns" v-if="list.status == 2"><div class="btn" @click="evaluate(list.is_sign)">去评分</div></div>
@@ -140,9 +146,9 @@
                 swiperOption: {
                     pagination: '.swiper-pagination',
                     paginationClickable: true,
-                    autoplay: 2500,
+                    autoplay: true,
                     autoplayDisableOnInteraction: false,
-                    loop: false,
+                    loop: true,
                     coverflow:'',
                     rotate: 30,
                     stretch: 10,
@@ -249,13 +255,20 @@
                 // this.$router.push({name:'evaluateList',params: {id:this.id}})
             },
             alertBtn:function(){
+              const  _this = this
                 if(this.isSign == false){
                     this.pl = false;
                     this.plText = '';
                 }else{
                     this.pl = false;
                     this.plText = '';
-                    this.$router.push("/")
+                    // this.$router.push("/")
+                  // location.reload()
+                  setTimeout(function()  {
+
+                    _this.activityDetail()//娃娃消失
+
+                  }, 1);
                 }
 
             },
@@ -313,7 +326,7 @@
         overflow: hidden;}
     .top {width:100%;height:5rem;position: relative;z-index: 1;}
     .top img {width:100%;height:5rem;}
-    .main {position: relative;padding: 0 .24rem;border-radius: .2rem;margin-top: -1rem;z-index: 2;
+    .main {position: relative;padding: 0 .24rem;border-radius: .2rem;z-index: 2;
         background: #fff;
     }
     .title {height:.9rem;line-height: .9rem;font-size: .36rem;color: #313131;font-weight: 900;
@@ -321,6 +334,7 @@
         text-overflow:ellipsis;
         -o-text-overflow:ellipsis;
         overflow: hidden;
+      text-align: center;
     }
     .sort {background: #f6f6f6;height:3.3rem;border-radius: .2rem;}
     .sort p {height:.65rem;line-height: .65rem;

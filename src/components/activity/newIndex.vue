@@ -3,22 +3,33 @@
         <div class="list">
             <div class="courseSort" v-for="item in list">
                 <router-link class="news" :to="{path: '/newsDetailPost', query: { id: item.id }}" >
-                    <div class="detail"  v-if="item.style !== 'video'">
-                        <div class="left">
-                            <img :src="getImg+item.frontCover" alt="" class="Img">
-                        </div>
-                        <div class="right">
+                    <div class="detail"  v-if="item.style !== 'video' && item.frontCover == ''">
+                        <div class="right" style="margin-left: 0;width:100%;">
                             <p class="right01">{{item.name}}</p>
                             <!--<p class="right02">{{item.content}}</p>-->
                             <p class="right04"><span>{{item.createTime}}</span> <span><img src="@/assets/img/index/iconSee.png" alt="">{{item.views}}</span></p>
                         </div>
                     </div>
+                  <div class="detail"  v-else-if="item.style !== 'video' && item.frontCover !== ''">
+                    <div class="left">
+                      <img :src="getImg+item.frontCover" alt="" class="Img">
+                    </div>
+                    <div class="right">
+                      <p class="right01">{{item.name}}</p>
+                      <!--<p class="right02">{{item.content}}</p>-->
+                      <p class="right04"><span>{{item.createTime}}</span> <span><img src="@/assets/img/index/iconSee.png" alt="">{{item.views}}</span></p>
+                    </div>
+                  </div>
                     <div class="video" v-else style="border-bottom: 1px solid #eee;padding-bottom: .2rem;">
                         <div class="videoTop">{{item.name}}</div>
-                        <div class="videoImg">
-                            <img :src="getImg+item.frontCover" alt="" class="videoBg">
+                        <div class="videoImg" v-if="item.frontCover == ''">
+                          <img src="@/assets/null.jpg" alt="" class="Img">
                             <img src="@/assets/img/course/play.png" alt="" class="play">
                         </div>
+                      <div class="videoImg" v-else>
+                        <img :src="getImg+item.frontCover" alt="" class="videoBg">
+                        <img src="@/assets/img/course/play.png" alt="" class="play">
+                      </div>
                         <div class="videoBottom">
                             <span>{{item.createTime}}</span> <span><img src="@/assets/img/index/iconSee.png" alt="">{{item.views}}</span>
                         </div>

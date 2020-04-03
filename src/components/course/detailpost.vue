@@ -3,18 +3,22 @@
         <div class="content" v-show="isshow">
             <div class="title"><p>{{list.detail.name}}</p></div>
 
-            <div class="textTime">
-<!--                <span>{{list.detail.teacher.name}}</span>-->
-                <span>{{list.detail.createTime}}</span>
-                <span class="read">{{list.detail.views}}</span>
-            </div>
+<!--            <div class="textTime">-->
+<!--&lt;!&ndash;                <span>{{list.detail.teacher.name}}</span>&ndash;&gt;-->
+<!--                <span>{{list.detail.createTime}}</span>-->
+<!--                <span class="read">{{list.detail.views}}</span>-->
+<!--            </div>-->
+          <video v-if="list.detail.video" autoplay loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>
+          <audio v-if="list.detail.audio" :src="getImg+list.detail.audio"  controls style="position: relative;width:80%;left:10%;">    </audio>
           <div><img v-for="item in list.on_doc" :src="getImg+item" alt="" style="width:100%;"></div>
-            <video v-if="list.detail.video" autoplay loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>
-            <audio v-if="list.detail.audio" :src="getImg+list.detail.audio"  controls style="position: relative;width:80%;left:10%;">    </audio>
+
             <div class="articleText">
 
                 <div class="uecontent" v-html="list.detail.content"></div>
             </div>
+          <div class="textTime">
+            <span class="read">{{list.detail.views}}</span>
+          </div>
 <!--            <div class="article">-->
 <!--                <div class="note" style="text-align: right;">-->
 <!--&lt;!&ndash;                    <span style="float:left;" @click="goPl()">去评价</span>&ndash;&gt;-->
@@ -561,7 +565,7 @@
         -webkit-box-orient: vertical;
         word-break: break-all;
     }
-    .textTime {height:.68rem;line-height: .68rem;font-size: .26rem;color: #666;text-align: center;}
+    .textTime {height:.68rem;line-height: .68rem;font-size: .26rem;color: #666;text-align: right;}
     .read {
         margin-right: 3.2vw;
         background: url('../../assets/img/share/scan_.png') 0 center no-repeat;

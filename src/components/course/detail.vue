@@ -13,6 +13,16 @@
               </div>
             </div>
           </div>
+          <video-player
+            style="margin-bottom: .2rem;"
+            v-if="list.detail.video"
+            class="video-player vjs-custom-skin"
+            ref="videoPlayer"
+            :playsinline="true"
+            :options="playerOptions"
+          ></video-player>
+          <!--            <video v-if="list.detail.video" autoplay loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>-->
+          <audio v-if="list.detail.audio" :src="getImg+list.detail.audio"  controls style="position: relative;width:80%;left:10%;">    </audio>
           <div><img v-for="item in list.on_doc" :src="getImg+item" alt="" style="width:100%;"></div>
 <!--          <canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>-->
             <div class="textTime">
@@ -20,16 +30,7 @@
 <!--                <span>{{list.detail.createTime}}</span>-->
 <!--                <span class="read">{{list.detail.views}}</span>-->
             </div>
-          <video-player
-            style="margin-bottom: .2rem;"
-            v-if="list.detail.video"
-            class="video-player vjs-custom-skin"
-                         ref="videoPlayer"
-                         :playsinline="true"
-                         :options="playerOptions"
-          ></video-player>
-<!--            <video v-if="list.detail.video" autoplay loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>-->
-            <audio v-if="list.detail.audio" :src="getImg+list.detail.audio"  controls style="position: relative;width:80%;left:10%;">    </audio>
+
             <div class="articleText" >
 
                 <div class="uecontent" v-html="list.detail.content"></div>

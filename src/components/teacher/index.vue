@@ -14,7 +14,9 @@
                         <span v-if="item.star ==5">五星讲师</span>
                     </div>
 <!--                    <div class="right02">{{item.intro}}</div>-->
-                    <div class="right02">部门：{{item.depart == null?'暂无部门':item.depart}} <img v-show="item.onJob !==1" src="@/assets/out.png" alt=""></div>
+                    <div class="right02" v-if="item.onJob == 0">部门： <img src="@/assets/out.png" alt=""></div>
+                    <div class="right02" v-if="item.onJob == 2">外部讲师</div>
+                    <div class="right02" v-if="item.onJob == 1">部门：{{!item.departD?'':item.departD.name}}</div>
                     <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==0"><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                     <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                     <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==2"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
@@ -41,7 +43,8 @@
                 list:'',
                 pageSize:6,
                 pageNum:1,
-                scroll:false
+                scroll:false,
+              flag:true
             };
         },
         components: {
@@ -71,6 +74,7 @@
             })
             },
             addTeacherList:function(){
+              let _this = this;
                 this.axios({
                     type: 'post',     // 通过设置type，来选择是get还是post请求
                     url: this.getAjax+'/teacher/list?pageSize='+this.pageSize+'&pageNum='+this.pageNum+'',    // 访问的后端接口地址
@@ -79,6 +83,7 @@
 
                     }
                 }).then(res => {
+                  this.flag = true
                     // this.list = res.data.data.rows;
                     for(var i=0;i<res.data.data.rows.length;i++){
                         this.list.push(res.data.data.rows[i])
@@ -87,19 +92,21 @@
                         this.pageNum++;
                         this.scroll = true;
                     }else{
-                        this.scroll = false;
+                      setTimeout(function(){ _this.scroll = false;}, 1);
+
                     }
                 }).catch(err => {
                     console.log('请求错误')    // 请求错误弹出警告
                 })
             },
             onScroll() {
-                if(this.scroll){
+                  if(this.scroll && this.flag){
                     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
                     var windowHeitht = document.documentElement.clientHeight || document.body.clientHeight;
                     var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
 //是否滚动到底部的判断
                     if(scrollTop + windowHeitht >= scrollHeight){
+                      this.flag = false
                         this.addTeacherList();
                     }
                 }

@@ -8,19 +8,26 @@
             <router-link class="sortDetail" to="/newActivity"><img src="@/assets/img/index/hdzs.png" alt=""> <p>活动展示</p></router-link>
         </div>
         <div class="show">
-<!--          <router-link to="/text">12312312</router-link>-->
+<!--          <router-link to="/code">12312312</router-link>-->
             <div class="course">
                 <div class="courseTop">近期课程 <router-link class="more" to="/activity">更多 <img src="@/assets/img/right.png" alt=""></router-link></div>
                 <div class="courseSort">
-                    <router-link class="detail" :to="{path: '/activityDetail', query: { id: item.id }}"  v-for="item in course">
-                        <div class="left">
-                            <img :src="urlImg+item.frontCover" alt="" class="Img">
+                    <router-link class="detail" :to="{path: '/activityDetail', query: { id: item.id }}"  v-for="item in course" >
+                        <div class="left" v-if="item.frontCover ==''">
+                          <img src="@/assets/null.jpg" alt="" class="Img">
                             <!--<img src="@/assets/img/index/bmz.png" alt="" class="active">-->
                             <img v-show="item.status == 0" src="@/assets/img/index/bmz.png" alt="" class="active">
                             <img v-show="item.status == 1" src="@/assets/img/index/jxz.png" alt="" class="active">
                             <img v-show="item.status == 2" src="@/assets/img/index/yjs.png" alt="" class="active">
                         </div>
-                        <div class="right">
+                      <div class="left" v-else>
+                        <img :src="getImg+item.frontCover" alt="" class="Img">
+                        <img src="@/assets/img/index/bmz.png" alt="" class="active">
+                        <img v-show="item.status == 0" src="@/assets/img/index/bmz.png" alt="" class="active">
+                        <img v-show="item.status == 1" src="@/assets/img/index/jxz.png" alt="" class="active">
+                        <img v-show="item.status == 2" src="@/assets/img/index/yjs.png" alt="" class="active">
+                      </div>
+                        <div class="right" >
                             <p class="right01">{{item.name}}</p>
                             <p class="right02"><img src="@/assets/img/index/iconTime.png" alt=""><span>{{item.startAt}}</span></p>
                             <p class="right03"><img src="@/assets/img/index/iconAddress.png" alt="">{{item.address}}</p>
@@ -32,12 +39,19 @@
                 <div class="courseTop">近期活动 <router-link class="more" to="/coursedetails">更多 <img src="@/assets/img/right.png" alt=""></router-link></div>
                 <div class="courseSort">
                     <router-link class="detail" :to="{path: '/activityDetail', query: { id: item.id }}" v-for="item in activity">
-                        <div class="left">
-                            <img :src="urlImg+item.frontCover" alt="" class="Img">
+                        <div class="left" v-if="item.frontCover ==''">
+                          <img src="@/assets/null.jpg" alt="" class="Img">
+<!--                            <img :src="urlImg+item.frontCover" alt="" class="Img">-->
                             <img v-show="item.status == 0" src="@/assets/img/index/bmz.png" alt="" class="active">
                             <img v-show="item.status == 1" src="@/assets/img/index/jxz.png" alt="" class="active">
                             <img v-show="item.status == 2" src="@/assets/img/index/yjs.png" alt="" class="active">
                         </div>
+                      <div class="left" v-else>
+                        <img :src="urlImg+item.frontCover" alt="" class="Img">
+                        <img v-show="item.status == 0" src="@/assets/img/index/bmz.png" alt="" class="active">
+                        <img v-show="item.status == 1" src="@/assets/img/index/jxz.png" alt="" class="active">
+                        <img v-show="item.status == 2" src="@/assets/img/index/yjs.png" alt="" class="active">
+                      </div>
                         <div class="right">
                             <p class="right01">{{item.name}}</p>
                             <p class="right02"><img src="@/assets/img/index/iconTime.png" alt=""><span>{{item.startAt}}</span></p>
