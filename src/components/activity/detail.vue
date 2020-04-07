@@ -156,7 +156,7 @@
                     modifier: 2,
                     slideShadows : true,
                     isSign:false
-                }
+                },
             };
         },
         components: {
