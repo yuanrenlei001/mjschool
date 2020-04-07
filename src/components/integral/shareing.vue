@@ -348,7 +348,7 @@
     .rankingTop {height:.85rem;line-height: .85rem;border-bottom: 1px solid #e6e6e6;}
 
     .rankingTop span {
-        margin: 0 1rem;
+        margin: 0 .9rem;
         color: #666;
         font-size: .32rem;
         border-bottom: 2px solid transparent;

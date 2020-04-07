@@ -15,13 +15,20 @@
                     <div style="position: relative;width:100%;overflow: hidden;">
                         <div class="shareImg appImg my-gallery clearfix" data-pswp-uid="12312" style="width:105%;overflow: hidden;">
                             <!--<img v-for="(l, index) in images" :src="l" :key="index" @click="preview(index)">-->
-                            <img
-                                    class="pic"
-                                    v-for="(imgs,index) in list.detail.imagesList"
-                                    :key="index"
-                                    :src="getImg+imgs"
-                                    :preview="list.detail.id"
-                            >
+                          <div class="annexSort">
+                            <a  v-for="items in list.detail.imagesList" @click="download(items.id,items.savePath)">
+                              <img  v-if="items.ext =='doc' || items.ext =='docx'" src="@/assets/img/share/word.png" alt="">
+                              <img  v-else-if="items.ext =='xlsx' || items.ext =='xls'" src="@/assets/img/share/excel.png" alt="">
+                              <img  v-else-if="items.ext =='jpg' || items.ext =='jpeg' || items.ext =='png' || items.ext =='gif'" src="@/assets/img/share/img.png" alt="">
+                              <img  v-else-if="items.ext =='ppt'|| items.ext =='pptx'" src="@/assets/img/share/ppt.png" alt="">
+                              <img   v-else-if="items.ext =='pdf'" src="@/assets/img/share/pdf.png" alt="">
+                              <img  v-else src="@/assets/img/share/rar.png" alt="">
+                              <!--                          <img v-show="(items.size/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
+                              <p>{{items.name}}</p>
+                              <!--<img v-show="(25589/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
+                            </a>
+                          </div>
+
                         </div>
                         <video v-if="list.detail.style=='video'" controls="controls"  loop :src="getImg+list.detail.videoList[0]" style="height:3rem;width:100%;margin: .5rem 0;"></video>
                     </div>
@@ -118,6 +125,7 @@
         name: "index",
         data () {
             return {
+              ispc:'',
                 showMinShopTab: true,
                 img:'',
                 openId:this.userId,
@@ -147,6 +155,21 @@
             window.addEventListener('scroll', this.onScroll);
         },
         methods:{
+          download(id,path){
+            // console.log(id)
+            // location.href=this.getImg+path
+            if(this.ispc==1){
+              this.pl = true;
+              this.plText = '移动端无法下载文件，请前往PC端！'
+            }else{location.href=this.getImg+path}
+          },
+          _isMobile(){
+            let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+            // localStorage.setItem('isiphone',flag)
+            // localStorage.setItem('ismobile',flag?1:0)
+            this.ispc = flag?1:0
+            // return flag;
+          },
             handleScroll:function(e) {
                 console.log(1)
             },
@@ -216,7 +239,8 @@
                         .catch(function (error) {
                             console.log(error);
                         });
-                }else{
+                }
+                else{
                     const Qs = require('qs');
                     let params= {
                         openId: that.openId,
@@ -342,6 +366,30 @@
 </script>
 
 <style scoped>
+  .annexSort a {
+    display: inline-block;
+    text-align: center;
+    font-size: .22rem;
+    color: #666;
+    width: 30%;
+    margin-top: .2rem;
+    margin-right: .1rem;
+    position: relative;
+  }
+  .annexSort a>.Imgsize {
+    position: absolute;
+    width:.2rem;
+    height:.2rem;
+    top:30%;
+    right:.2rem;
+  }
+  .annexSort a img {width:.75rem;height:.75rem;}
+  .annexSort a p {
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow: hidden;
+  }
     .moreList {text-align: center;font-size: .28rem;color: #666;width:100%;display: block;position: relative;top:.3rem;}
     .text{
         font-size: .24rem;

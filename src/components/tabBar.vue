@@ -157,9 +157,10 @@
         background:#F7F7FA;
         font-size:.24rem;
         color:#828282;
-        box-shadow: 3px 3px 3px 3px #aaa;
+        box-shadow: 0 0 3px 3px rgba(0,0,0,.1);
         z-index: 999;
         height:.98rem;
+      max-width: 750px;
     }
 
     .tabBar-item{

@@ -74,7 +74,8 @@
                   <!--                        <img v-else src="@/assets/img/index/yjs.png" alt="" class="active">-->
                 </div>
                 <div class="left" v-else>
-                  <img :src="getImg+item.activity.frontCover" alt="" class="Img">
+                  <img  :src="getImg+item.activity.frontCover" alt="" class="Img">
+<!--                  <img v-else :src="@/assets/img/teacher/iconxx02.png" alt="" class="Img">-->
                   <!--                    <img v-if="item.type == 0" src="@/assets/img/index/jxz.png" alt="" class="active">-->
                   <!--                    <img v-else-if="item.type == 1" src="@/assets/img/index/bmz.png" alt="" class="active">-->
                   <!--                    <img v-else src="@/assets/img/index/yjs.png" alt="" class="active">-->
@@ -246,7 +247,7 @@
 </script>
 
 <style scoped>
-    .top {width:100%;height:4.3rem;position: relative;text-align: center;background: #fff;padding-top: .3rem;}
+    .top {width:100%;height:4.5rem;position: relative;text-align: center;background: #fff;padding-top: .3rem;}
     .topBg {width:2rem;height:2.58rem;border-radius: .2rem;}
     .right011 {font-size: .32rem;color: #4c4c4c;}
     .right011 span {background: #fa5b55;display: inline-block;width:1.2rem;height:.4rem;text-align: center;line-height: .4rem;

@@ -148,7 +148,7 @@ window['adaptive'].desinWidth = 750;
 window['adaptive'].baseFont = 12;
 
 // 显示最大宽度 可选
-window['adaptive'].maxWidth = 1200;
+window['adaptive'].maxWidth = 750;
 // rem值改变后执行方法 可选
 // window['adaptive'].setRemCallback = function () {
     // alert(1)

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="list">
-            <router-link class="teacher"   v-for="item in list" v-if="item.is_evaluate !==1" :to="{path: '/coursePl', query: { id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,evaluate:false}}">
+            <router-link class="teacher"   v-for="item in list" v-if="item.is_evaluate !==1" :to="{path: '/coursePl', query: { id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,codes:false,evaluate:false}}">
                 <div class="left"><img :src="item.detail.teacher.avatar"></div>
                 <div class="right">
                     <div class="right01">{{item.detail.teacher.name}}
@@ -23,7 +23,7 @@
                   <div class="right04">分享课程：{{item.detail.teacher.courses}}次</div>
                 </div>
             </router-link>
-          <router-link class="teacher"   v-for="item in list" v-if="item.is_evaluate !==0" :to="{path: '/coursePl2', query: { id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,evaluate:true}}">
+          <router-link class="teacher"   v-for="item in list" v-if="item.is_evaluate !==0" :to="{path: '/coursePl2', query: { id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,codes:false,evaluate:true}}">
             <div class="left"><img :src="item.detail.teacher.avatar"></div>
             <div class="right">
               <div class="right01">{{item.detail.teacher.name}}

@@ -10,6 +10,7 @@
         <label class="control-label col-md-4" >{{item.password}}.0分</label>
         <label class="control-labels">{{item.name}}</label>
         <div class="col-md-8">
+          <div class="grade-box" v-if="item.password == 0" ><img v-for="(star,index) in stars000" v-bind:src="star.src" alt="星星图片" /></div>
           <div class="grade-box" v-if="item.password == 1" ><img v-for="(star,index) in stars001" v-bind:src="star.src" alt="星星图片" /></div>
           <div class="grade-box" v-if="item.password == 2" ><img v-for="(star,index) in stars002" v-bind:src="star.src" alt="星星图片" /></div>
           <div class="grade-box" v-if="item.password == 3" ><img v-for="(star,index) in stars003" v-bind:src="star.src" alt="星星图片" /></div>
@@ -40,9 +41,9 @@
 <!--        </div>-->
 <!--      </div>-->
     </div>
-    <div class="pf" style="border-bottom: transparent;">
+    <div class="pf" style="border-bottom: transparent;display: none;">
       <div class="pf01">您对本次评价的留言</div>
-      <textarea readonly  v-model="textareas"></textarea>
+      <textarea readonly  v-model="textareas" ></textarea>
     </div>
     <div class="btns">
       <router-link id="pinglun" style="display: block;" class="btn" :to="{path: '/coursePl', query: { id: this.id ,courseId:this.courseId,name:this.names,evaluate:true}}">再次评价</router-link>
@@ -74,6 +75,7 @@
         textPL2:'',
         openId:this.userId,
         pdId:localStorage.getItem('plId'),
+        codes:this.$route.query.codes,
         id:this.$route.query.id,
         names:this.$route.query.name,
         courseId:this.$route.query.courseId,
@@ -81,6 +83,7 @@
         showevaluates:'',
         appstars:{},
         appstarNum:{},
+        stars000:[{src: starOnImg, active: false},{src: starOffImg, active: false},{src: starOffImg, active: false},{src: starOffImg, active: false},{src: starOffImg, active: false}],
         stars001:[{src: starOnImg, active: true},{src: starOffImg, active: false},{src: starOffImg, active: false},{src: starOffImg, active: false},{src: starOffImg, active: false}],
         stars002:[{src: starOnImg, active: true},{src: starOnImg, active: true},{src: starOffImg, active: false},{src: starOffImg, active: false},{src: starOffImg, active: false}],
         stars003:[{src: starOnImg, active: true},{src: starOnImg, active: true},{src: starOnImg, active: true},{src: starOffImg, active: false},{src: starOffImg, active: false}],
@@ -193,7 +196,7 @@
               }
               this.keyword.push(objs);
             }
-            // console.log(this.keyword)
+            console.log(this.keyword)
             let that = this;
             this.axios({
               type: 'post',     // 通过设置type，来选择是get还是post请求
@@ -208,13 +211,13 @@
               var obj =  JSON.parse(res.data.data.evaluate)
               that.textareas = res.data.data.content
               // this.showevaluates=  JSON.parse(res.data.data.evaluate)
-              // console.log(obj)
+              console.log(obj)
               for(var st in obj) {
                 var oobj = {}
                 oobj[st]= obj[st]
                 arr.push(oobj)
               }
-              // console.log(arr)
+              console.log(arr)
               for(var i = 0 ; i < that.add.length ; i++){
                 for(var aa = 0 ; aa < arr.length ; aa++){
                   if(that.add[i].keyword == Object.keys(arr[aa])[0]){

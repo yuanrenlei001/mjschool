@@ -8,7 +8,7 @@
             <div class="sort">
                 <p><span>课程开始：</span>{{list.detail.startAt}}</p>
                 <p><span>课程结束：</span>{{list.detail.endAt}}</p>
-                <p><span>课程地点：</span>   {{list.detail.address}}</p>
+                <p><span>培训地点：</span>   {{list.detail.address}}</p>
                 <p><span>报名人数：</span>   {{list.detail.applyCount}}人</p>
                 <p @click="fixed"><span>联系人：</span>   {{list.detail.contact}} {{list.detail.contactInfo}}</p>
             </div>
@@ -42,9 +42,9 @@
                     </div>
                 </router-link>
             </div>
-            <div class="text">内容简介</div>
-            <div class="html">
-                <div style="text-align: justify;" v-html="list.detail.description"></div>
+            <div class="text">课程介绍</div>
+            <div class="html" style="padding: .24rem;">
+                <div style="text-align: justify;" v-html="list.courses[0].detail.content"></div>
             </div>
         </div>
         <div  v-show="list.courses.length > 1" style="background: #fff;" class="assds">
@@ -75,12 +75,12 @@
                           <div class="right04">分享课程：{{item.detail.teacher.courses}}次</div>
                         </div>
                     </router-link>
+                  <div class="text">课程介绍</div>
+                  <div class="html">
+                    <div style="text-align: justify;" v-html="item.detail.content"></div>
+                  </div>
                 </swiper-slide>
                 </swiper>
-                <div class="text">内容简介</div>
-                <div class="html">
-                    <div style="text-align: justify;" v-html="list.detail.description"></div>
-                </div>
             </div>
         </div>
         <div class="signUp">
@@ -403,13 +403,14 @@
         overflow: hidden;
         margin-top: .1rem;
     }
+    .right02 img {width: .8rem;vertical-align: middle;}
     .right03 {margin-top: .3rem;font-size: .24rem;}
     .right03 img {width:.35rem;height:.33rem;}
     .right04 {font-size: .26rem;color: #666;position: absolute;bottom:0;left:0;}
     .text {height:.86rem;text-align: center;line-height: .86rem;font-size: .32rem;background:#fff;}
     .html {
         background: #fff;
-        padding: .24rem;font-size: .26rem;color: #666;line-height: .48rem;
+        padding: .24rem 0;font-size: .26rem;color: #666;line-height: .48rem;
     }
     .html div {
         border-radius: .2rem;background: #f7f7f7;padding: .24rem;

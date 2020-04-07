@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" id="container">
         <div class="content" v-show="isshow">
             <div class="title"><p>{{list.detail.name}}</p></div>
           <div  class="list clear zbhd titleTop">
@@ -522,7 +522,9 @@
         font-size: .26rem;
     }
     .fixedBody {width:auto;height:5rem;background: #fff;border-radius: .2rem;position: relative;
-        margin-top: 30%;padding: .2rem;text-align: center;
+       padding: .2rem;text-align: center;
+      max-width: 750px;
+      margin:20% auto 0;
     }
     .fixedBody p {
         color: #797979;
@@ -602,10 +604,10 @@
         bottom: 0;
         width: 100%;
         height: 12vw;
-        padding-left: 2.6vw;
         border-top: 1px solid #f1f1f1;
         background: #ffffff;
         font-family: "Microsoft YaHei", sans-serif;
+      max-width: 750px;
     }
     .bottom .star {
         background: url('/frontend/images/detail/star-border.png') 5.4vw 3.2vw no-repeat;
@@ -627,13 +629,15 @@
         vertical-align: middle;
         height: 8vw;
         width: 92vw;
-        margin: 1.8vw 0;
+        margin: 1.8vw auto 1.8vw;
         padding-left: 2.6vw;
         background: #fafafa;
         border: 1px solid #d8d8d8;
         -webkit-border-radius: 1.6vw;
         border-radius: 1.6vw;
         font-size: .24rem;
+      max-width: 750px;
+      position: relative;
     }
     .bottom .send {
         width: 20.5vw;
@@ -668,6 +672,7 @@
         font-size: .24rem;
         overflow: hidden;
         max-width: 100%!important;
+      -webkit-overflow-scrolling: touch;
     }
     .content .articleText p ,.content .articleText {line-height: .48rem;color: #666;font-size: .26rem;}
     .content .articleText p , .content .articleText p span {
@@ -891,7 +896,7 @@
         position: absolute;
         right:4vw;
     }
-    .fl {float:left;font-size: .26rem;}
+    .fl {float:left;font-size: .26rem;width:100%;text-align: center;}
     .lists {margin-top: -4vw;}
     .midRight .name {font-size: .26rem;color: #4c4c4c;
       line-height: 1rem;text-align: center;

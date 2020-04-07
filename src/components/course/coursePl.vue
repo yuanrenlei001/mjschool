@@ -117,10 +117,10 @@
       <!--        </div>-->
       <!--      </div>-->
     </div>
-    <div class="pf" style="border-bottom: transparent;">
-      <div class="pf01">您对本次评价的留言</div>
-      <textarea placeholder="请输入您要留言的内容" v-model="text"></textarea>
-    </div>
+<!--    <div class="pf" style="border-bottom: transparent;">-->
+<!--      <div class="pf01">您对本次评价的留言</div>-->
+<!--      <textarea placeholder="请输入您要留言的内容" v-model="text"></textarea>-->
+<!--    </div>-->
     <div class="btns">
       <div class="btn" @click="evaluate()">提交</div>
     </div>
@@ -144,6 +144,7 @@
     name: 'index',
     data () {
       return {
+        codes:this.$route.query.codes,
         starOffImg: require('@/assets/img/teacher/iconxx01.png'),
         starOnImg: require('@/assets/img/teacher/iconxx02.png'),
         openId: this.userId,
@@ -1366,13 +1367,18 @@
       },
       alertBtn: function () {
         // this.$router.push("/")
-        if (this.is_evaluate == 1) {
-          // alert(this.is_evaluate)
-          this.$router.go(-2)
-        } else {
-          // alert(this.is_evaluate)
-          this.$router.go(-1)
+        if(this.codes){
+          this.$router.push({path:'/coursePl2',query:{ id: this.id ,courseId:this.courseId,name:this.name,evaluate:true,codes:true}})
+        }else{
+          if (this.is_evaluate == 1) {
+            // alert(this.is_evaluate)
+            this.$router.go(-2)
+          } else {
+            // alert(this.is_evaluate)
+            this.$router.go(-1)
+          }
         }
+
         this.pl = false
         this.plText = ''
       },

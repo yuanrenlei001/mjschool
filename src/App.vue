@@ -21,7 +21,6 @@
     }
 </script>
 <style>
-
   /*#app {*/
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
   /*-webkit-font-smoothing: antialiased;*/
@@ -30,8 +29,11 @@
   /*padding: 0;*/
   /*}*/
   html,body,#app {
-    width: 100%;
+    width:100%;
     height:100%;
+    max-width: 750px;
+    position: relative;
+    margin: auto;
   }
   body {
     margin: 0;
@@ -45,6 +47,7 @@
   }
   p {margin: 0;padding: 0;}
   ul,li{ padding:0;margin:0;list-style:none}
-  .alert {width:5rem;background: #fff;position: relative;margin:60% auto 0;font-size: .28rem;height:3rem;border-radius: .2rem;}
+  .alert {width:5rem;background: #fff;position: relative;margin:30% auto 0;font-size: .28rem;height:3rem;border-radius: .2rem;}
   .titles ,.alerts,.alertBtn{height:1rem;line-height: 1rem;font-size: .28rem;text-align: center;}
+
 </style>

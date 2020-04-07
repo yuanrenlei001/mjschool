@@ -119,18 +119,34 @@
 
                     }
                   }).then(res => {
-                    if(res.data.data.courses.length>1){
-                      this.$router.push({path:'/evaluateList',query:{id:this.$route.query.activityId}})
-                    }else{
-                      const item = res.data.data.courses[0]
-                      const is_evaluate = res.data.data.courses.is_evaluate;
-                      // console.log(item.detail.teacher.id,item.detail.id,item.detail.teacher.name)
-                      if(is_evaluate !== 1){
-                        this.$router.push({path:'/coursePl',query:{ id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,evaluate:false}})
-                      }else {
-                        this.$router.push({path:'/coursePl',query:{ id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,evaluate:true}})
+                    // if(is_evaluate !== 1){
+                    //   this.$router.push({path:'/coursePl',query:{ id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,evaluate:false,codes:true}})
+                    // }else {
+                    //   this.$router.push({path:'/coursePl2',query:{ id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,evaluate:true,codes:true}})
+                    // }
+                    for(var i=0;i<res.data.data.courses.length;i++){
+                      const item = res.data.data.courses[i]
+                      if(item.detail.id == that.$route.query.courseId){
+                        if(item.is_evaluate !== 1){
+                          this.$router.push({path:'/coursePl',query:{ id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,evaluate:false,codes:true}})
+                        }else {
+                          this.$router.push({path:'/coursePl2',query:{ id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,evaluate:true,codes:true}})
+                        }
                       }
+
                     }
+                    // if(res.data.data.courses.length>1){
+                    //   this.$router.push({path:'/evaluateList',query:{id:this.$route.query.activityId}})
+                    // }else{
+                    //   const item = res.data.data.courses[0]
+                    //   const is_evaluate = res.data.data.courses[0].is_evaluate;
+                    //   // console.log(item.detail.teacher.id,item.detail.id,item.detail.teacher.name)
+                    //   if(is_evaluate !== 1){
+                    //     this.$router.push({path:'/coursePl',query:{ id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,evaluate:false,codes:true}})
+                    //   }else {
+                    //     this.$router.push({path:'/coursePl2',query:{ id: item.detail.teacher.id ,courseId:item.detail.id,name:item.detail.teacher.name,evaluate:true,codes:true}})
+                    //   }
+                    // }
 
 
 
