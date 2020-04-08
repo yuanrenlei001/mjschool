@@ -8,7 +8,7 @@
 <!--              <router-link id="pinglun" v-else :to="{path: '/coursePl2', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:true}}">已评价</router-link>-->
 <!--              <div class="fl"><img :src="list.detail.teacher.avatar" alt="用户" class="user"></div>-->
               <div class="midRight">
-                <div class="name limit"><img :src="list.detail.teacher.avatar" alt="用户" class="user">{{list.detail.teacher.name}}</div>
+                <div class="name limit" style="position: relative;top:inherit;left:inherit;"><img :src="list.detail.teacher.avatar" alt="用户" class="user">{{list.detail.teacher.name}}</div>
 <!--                <div class="time">{{list.detail.teacher.createTime}}</div>-->
               </div>
             </div>
@@ -103,7 +103,7 @@
                     <div class="lists" style="margin-top:0;">
                         <div  class="list clear zbhd" v-for="item in comments">
                             <div class="plTop">
-                                <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
+                                <div class="fl" style="text-align:left;"><img :src="item.user.avatar" alt="用户" class="user"></div>
                                 <div class="midRight"><div class="name limit" style="text-align: left;">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
                             </div>
                             <div class="mid"><div class="PLcontent" >{{item.content}}</div></div>
@@ -114,7 +114,7 @@
                 <div v-if="type == 2" class="zan bottomDiv">
                     <div  class="list clear zbhd" v-for="item in list.likes">
                         <div class="plTop">
-                            <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
+                            <div class="fl" style="text-align:left;"><img :src="item.user.avatar" alt="用户" class="user"></div>
                             <div class="midRight"><div class="name limit" style="text-align: left;">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                 <div v-if="type == 3" class="zan bottomDiv">
                       <div  class="list clear zbhd" v-for="item in list.views">
                           <div class="plTop">
-                              <div class="fl"><img :src="item.user.avatar" alt="用户" class="user"></div>
+                              <div class="fl" style="text-align:left;"><img :src="item.user.avatar" alt="用户" class="user"></div>
                               <div class="midRight"><div class="name limit" style="text-align: left;">{{item.user.name}}</div><div class="time">{{item.createTime}}</div></div>
                           </div>
                       </div>
@@ -674,7 +674,9 @@
         max-width: 100%!important;
       -webkit-overflow-scrolling: touch;
     }
-    .content .articleText p ,.content .articleText {line-height: .48rem;color: #666;font-size: .26rem;}
+    .content .articleText p ,.content .articleText {line-height: .48rem;color: #666;font-size: .26rem;
+      word-break:break-all
+    }
     .content .articleText p , .content .articleText p span {
         font-size: .26rem ;
         color: #666;
@@ -900,6 +902,7 @@
     .lists {margin-top: -4vw;}
     .midRight .name {font-size: .26rem;color: #4c4c4c;
       line-height: 1rem;text-align: center;
+      position: absolute;top:0;left:1rem;
     }
     .midRight .time {font-size: .26rem;color: #808080;position: absolute;bottom: 0;left:1rem;}
     /*评论*/

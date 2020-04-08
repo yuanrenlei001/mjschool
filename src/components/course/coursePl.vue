@@ -364,7 +364,8 @@
             let objs = {}
             // this.keyword.push(res.data.data[i].keyword);
             objs['type'] = res.data.data[i].type
-            objs['keyword'] = res.data.data[i].keyword
+            // objs['keyword'] = res.data.data[i].keyword
+            objs['keyword'] = res.data.data[i].id
             if (res.data.data[i].type == 1) {
               this.appstars['stars' + i] = startArr
               this.appstarNum['starNum' + i] = 0

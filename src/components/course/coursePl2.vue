@@ -189,14 +189,14 @@
               let objs = {}
               // this.keyword.push(res.data.data[i].keyword);
               objs['type'] = res.data.data[i].type
-              objs['keyword'] = res.data.data[i].keyword
+              objs['keyword'] = res.data.data[i].id
               if(res.data.data[i].type == 1){
                 this.appstars['stars'+i] = startArr
                 this.appstarNum['starNum'+i] = 0;
               }
               this.keyword.push(objs);
             }
-            console.log(this.keyword)
+            // console.log(this.keyword)
             let that = this;
             this.axios({
               type: 'post',     // 通过设置type，来选择是get还是post请求
@@ -211,7 +211,7 @@
               var obj =  JSON.parse(res.data.data.evaluate)
               that.textareas = res.data.data.content
               // this.showevaluates=  JSON.parse(res.data.data.evaluate)
-              console.log(obj)
+              // console.log(obj)
               for(var st in obj) {
                 var oobj = {}
                 oobj[st]= obj[st]
@@ -220,14 +220,15 @@
               console.log(arr)
               for(var i = 0 ; i < that.add.length ; i++){
                 for(var aa = 0 ; aa < arr.length ; aa++){
-                  if(that.add[i].keyword == Object.keys(arr[aa])[0]){
+                  console.log(Object.keys(arr[aa])[0])
+                  if(that.add[i].id == Object.keys(arr[aa])[0]){
                     that.add[i].password = Object.values(arr[aa])[0]
                     // console.log(that.keyword[i][Object.keys(arr[aa])[0]] = Object.values(arr[aa])[0])
                   }
                 }
               }
               // console.log( that.keyword)
-              console.log( that.add)
+              // console.log( that.add)
               // for(var i=0;i<that.keyword.length;i++){
               //   for(j=0;j<5;j++){
               //     console.log(1)
