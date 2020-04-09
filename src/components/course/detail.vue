@@ -3,7 +3,7 @@
         <div class="content" v-show="isshow">
             <div class="title"><p>{{list.detail.name}}</p></div>
           <div  class="list clear zbhd titleTop">
-            <div class="plTop">
+            <div class="plTop" style="height:inherit;">
 <!--              <router-link id="pinglun" v-if="list.is_evaluate !== 1" :to="{path: '/coursePl', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:false}}">评价导师</router-link>-->
 <!--              <router-link id="pinglun" v-else :to="{path: '/coursePl2', query: { id: list.detail.teacher.id ,courseId:list.detail.id,name:list.detail.teacher.name,evaluate:true}}">已评价</router-link>-->
 <!--              <div class="fl"><img :src="list.detail.teacher.avatar" alt="用户" class="user"></div>-->
@@ -158,7 +158,7 @@
             </div>
         </div>
         <!--<div v-if="scroll == false"  v-show="list.length>10" class="nulls" style="font-size: .36rem;color: #666;text-align: center;line-height: 1rem;">暂无数据</div>-->
-        <div @click="send()" class="bottom clear"><div class="myword fl"><input type="text" placeholder="说说你的感想！" disabled="disabled"></div></div>
+        <div @click="send()" class="bottom clear" id="bottoms"><div class="myword fl"><input type="text" id="inputss" placeholder="说说你的感想！" disabled="disabled"></div></div>
     </div>
 </template>
 
@@ -475,6 +475,12 @@
             this.comment();
             this.urlsss= this.getImg+'/uploads/20200302/1583117050281_客满物流知识分享.pptx'
           // this._loadFile(this.getImg+'/uploads/20200302/1583117050281_客满物流知识分享.pptx')
+          if(window.screen.width>1024){
+            var bottoms = document.getElementById("bottoms");
+            var inputss = document.getElementById("inputss");
+            bottoms.style.cssText='height:7vw';
+            inputss.style.cssText='height:4vw';
+          }
         }
     }
 </script>
@@ -898,7 +904,7 @@
         position: absolute;
         right:4vw;
     }
-    .fl {float:left;font-size: .26rem;width:100%;text-align: center;}
+    .fl {float:left;font-size: .26rem;width:100%;text-align: center;position: relative;}
     .lists {margin-top: -4vw;}
     .midRight .name {font-size: .26rem;color: #4c4c4c;
       line-height: 1rem;text-align: center;
@@ -910,9 +916,10 @@
         width: 100%;
         padding-left: 3.4vw;
         padding-right: 3.4vw;
-        min-height: 75px;
+        min-height: 1.3rem;
         border-bottom: 1px solid #f1f1f1;
         overflow: hidden;
+
     }
     .ready .list .fl img {
         width: .74rem;
@@ -923,6 +930,7 @@
         -webkit-border-radius: 50%;
         border-radius: 50%;
     }
+  .list .plTop {height:1.3rem;}
     .ready .list .mid {
         width: 100%;
         position: relative;
@@ -968,17 +976,16 @@
 
 
 
-
+  .zan .list .fl {height:1.3rem;}
 
 
     .zan .list .fl img {
         width: .74rem;
         height: .74rem;
-        margin-top: 3.4vw;
-        margin-right: 3vw;
         overflow: hidden;
         -webkit-border-radius: 50%;
         border-radius: 50%;
+      position: absolute;top:50%;margin-top: -.37rem;
     }
     .zan .list .mid {
         width: 100%;

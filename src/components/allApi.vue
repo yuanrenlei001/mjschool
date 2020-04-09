@@ -13,7 +13,7 @@
             if (code == null || code == "") {
                 window.location.href =
                     "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" +
-                    APPID +
+                    APPID +-
                     "&redirect_uri=" +
                     encodeURIComponent(local) +
                     "&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";

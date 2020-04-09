@@ -77,13 +77,13 @@
                     </router-link>
                   <div class="text">课程介绍</div>
                   <div class="html">
-                    <div style="text-align: justify;" v-html="item.detail.content"></div>
+                    <div style="text-align: justify;white-space:pre-wrap;" v-html="item.detail.content"></div>
                   </div>
                 </swiper-slide>
                 </swiper>
             </div>
         </div>
-        <div class="signUp">
+        <div class="signUp" style="border-top:.2rem solid #f2f3f9;">
             <div class="signTop"><span>已报名 （{{list.detail.applies}}/{{list.detail.applyCount}}）</span> <router-link to="/signUp" class="more">更多 <img src="@/assets/img/right.png" alt=""></router-link></div>
             <div class="signUser">
                 <ul>
@@ -99,7 +99,7 @@
                 </ul>
             </div>
         </div>
-        <div class="btns" v-if="list.is_apply == 0 && list.status == 0" ><div class="btn" @click="apply()">报名</div></div>
+        <div class="btns" style="" v-if="list.is_apply == 0 && list.status == 0" ><div class="btn" @click="apply()">报名</div></div>
         <div class="btns" v-if="list.is_apply == 1 && list.status == 0"><div class="btn" @click="unApply()">取消报名</div></div>
         <div class="btns" v-if="list.status == 1"><div class="btn" @click="code(list.detail.id,list.is_sign)">{{list.is_sign == 0?'签到':'已签到'}}</div></div>
         <div class="btns" v-if="list.status == 2"><div class="btn" @click="evaluate(list.is_sign)">去评分</div></div>
@@ -415,7 +415,7 @@
     .html div {
         border-radius: .2rem;background: #f7f7f7;padding: .24rem;
     }
-    .signUp {padding: 0 .24rem;background: #fff;border-top:.2rem solid #f2f3f9;height:2.2rem;}
+    .signUp {padding: 0 .24rem;background: #fff;height:2.2rem;border-bottom:.2rem solid #f2f3f9;}
     .signTop {font-size: .3rem;color: #333;height:.76rem;line-height: .76rem;}
     .signTop span:first-child {float:left;}
     .signTop .more {font-size: .26rem;color: #666;float:right;height:100%;}
@@ -424,7 +424,7 @@
     .signUser ul {width:110%;position: relative;overflow: hidden;}
     .signUser ul li {float:left;text-align: center;width:1rem;font-size: .24rem;}
     .signUser img {width:.74rem;height:.74rem;border-radius: 50%;}
-    .btns {width:100%;height:2.4rem;background: #f2f3f9;position: relative;padding-top: 1rem;}
+    .btns {width:100%;height:2.4rem;position: relative;padding-top: 1rem;}
     .btn {
         width: 7.02rem;height:.8rem;text-align: center;line-height: .8rem;border-radius: .2rem;
         background: #fa5b55;font-size: .3rem;color: #fff;margin:auto;
