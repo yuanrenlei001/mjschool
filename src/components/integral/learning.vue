@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="fixed" v-show="show">
-            <div class="fixedMain">
+            <div class="fixedMain" id="bottoms">
                 <div id="close" @click="close"></div>
                 <!--<div style="padding-top: 2.1rem;"><span class="title">讲师分享：</span><span class="title01">公司五星讲师</span><span class="title02">400积分/次</span></div>-->
                 <!--<div><span class="title03">公司四星讲师</span><span class="title02">400积分/次</span></div>-->
@@ -292,6 +292,10 @@
             this.Getuser();
             this.getUserScore();
             this.getIntegral();
+            if(window.screen.width>1024){
+                var bottoms = document.getElementById("bottoms");
+                bottoms.style.cssText='margin: 5% auto 0;';
+            }
         }
     }
 </script>

@@ -2,7 +2,9 @@
     <div class="container">
         <div class="list">
             <router-link class="teacher" :to="{path: '/detail', query: { id: item.id }}"  v-for="item in list">
-                <div class="left"><img :src="item.avatar"></div>
+                <div class="left" v-if="new RegExp('http').test(item.avatar)"><img :src="item.avatar"></div>
+                <div class="left" v-else><img :src="getImg+item.avatar"></div>
+
                 <div class="right">
                     <div class="right01">{{item.name}}
 <!--                      Math.round(748.5)-->

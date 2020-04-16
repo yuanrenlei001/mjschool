@@ -58,7 +58,8 @@
                 text:'',
                 pl:false,
                 plText:'',
-                ispc:''
+                ispc:'',
+                xinxi:false
             };
         },
         components: {
@@ -80,24 +81,37 @@
                     hasShare:that.radio
                 }
                 console.log(params)
-
-                this.axios.post(this.getAjax+'/user/apply', Qs.stringify(params),{ headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },}, {
-                }) .then(function (res) {
-                    // this.islike = res.data.data.rows.total;
+                if(params.content == '' || params.startAt == '' || params.endAt == ''){
                     that.pl = true;
-                    that.plText = '发布成功,等待管理员审核！'
-                    console.log(res)
-                })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                    that.plText = '请填写完整信息！'
+                    that.xinxi = true;
+                }else{
+                    this.axios.post(this.getAjax+'/user/apply', Qs.stringify(params),{ headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },}, {
+                    }) .then(function (res) {
+                        // this.islike = res.data.data.rows.total;
+                        that.pl = true;
+                        that.plText = '发布成功,等待管理员审核！'
+                        that.xinxi = false;
+                        console.log(res)
+                    })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+
             },
             alertBtn:function(){
-                this.$router.push("/user")
-                this.pl = false;
-                this.plText = ''
+                if(this.xinxi){
+                    this.pl = false;
+                    this.plText = ''
+                }else{
+                    this.$router.push("/user")
+                    this.pl = false;
+                    this.plText = ''
+                }
+
             }
         },
         created(){

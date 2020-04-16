@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="background: #fafafa;">
+    <div class="container" style="background: #fafafa;min-height: 10rem;">
         <div class="top">
             <img :src="user.avatar" alt="" class="userImg">
             <p>{{user.name}}</p>
