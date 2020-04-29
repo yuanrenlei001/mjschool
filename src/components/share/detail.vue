@@ -30,7 +30,7 @@
                           </div>
 
                         </div>
-                        <video v-if="list.detail.style=='video'" controls="controls"  loop :src="getImg+list.detail.videoList[0]" style="height:3rem;width:100%;margin: .5rem 0;"></video>
+                        <video v-if="list.detail.style=='video'" controls="controls"  loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>
                     </div>
                 </div>
             </div>
@@ -194,10 +194,10 @@
                     }) .then(function (res) {
                         // this.islike = res.data.data.rows.total;
                         that.listPL = res.data.data;
-                        if(that.listPL.rows.length>=that.pageSize){
+                      if(that.listPL.rows.length>=that.pageSize){
                             that.pageNum++;
                             that.scroll = true;
-                        }
+                          }
 
                     })
                         .catch(function (error) {
@@ -321,7 +321,8 @@
 
                     }
                 }).then(res => {
-                    // this.list = res.data.data.rows;
+                  console.log(res.data.data.rows)
+                    this.list = res.data.data.rows;
                     for(var i=0;i<res.data.data.rows.length;i++){
                         this.listPL.rows.push(res.data.data.rows[i])
                     }

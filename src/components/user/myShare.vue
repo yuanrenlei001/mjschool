@@ -28,7 +28,7 @@
                                     :preview="item.id"
                             >
                         </div>
-                        <video v-if="item.style=='video'" controls="controls"  loop :src="getImg+item.videoPath" style="height:3rem;width:100%;margin: .5rem 0;"></video>
+                        <video v-if="item.style=='video'" controls="controls"  loop :src="getImg+item.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>
                     </div>
                 </div>
             </div>

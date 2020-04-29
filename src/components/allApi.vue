@@ -19,11 +19,12 @@
                     "&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
             } else {
                 // xhr.open('GET', 'http://39.100.95.204:8080/api/home/activity', false);
-                xhr.open('GET', 'http://39.100.95.204:8080/api/auth/'+code, false);
+                // xhr.open('GET', 'http://39.100.95.204:8080/api/auth/'+code, false);
+                xhr.open('GET', ' https://trainingadmin.yunjiglobal.com/api/auth/'+code, false);
                 xhr.onreadystatechange = function() {
                     // alert(1)
                     // readyState == 4说明请求已完成
-                    if (xhr.readyState == 4 && xhr.status == 200) {
+                    if (xhr.readyState == 4 && xhr.status == 200) {xx
                         // alert('******3333********')
                         // alert(xhr)
                         // alert(JSON.parse(xhr.responseText).data.openId);

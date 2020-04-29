@@ -12,7 +12,7 @@
       <el-upload
         class="upload-demo"
         ref="upload"
-        action="http://39.100.95.204:8080/api/upload/video"
+        action=" https://trainingadmin.yunjiglobal.com/api/upload/cos"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
         :on-success="uploadSuccess"
@@ -46,7 +46,7 @@
               accept="video/*"
             />
           </div>
-          <video v-else  controls="controls"  loop :src="getImg+videoPath" style="height:3rem;margin: .5rem 0;padding: 0 .24rem;width:94%;"></video>
+          <video v-else  controls="controls"  loop :src="videoPath" style="height:3rem;margin: .5rem 0;padding: 0 .24rem;width:94%;"></video>
         </form>
         <p class="Upload_pictures" style="text-align: center;">
           <span></span>
@@ -174,13 +174,13 @@
           formData.append("file", file); //接口需要传递的参数
         }
         let potss = formData;
-        let urls = this.getAjax+'/upload/video';
+        let urls = this.getAjax+'/upload/cos';
         this.axios.post(urls,potss,{ headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },}, {
         }) .then(function (res) {
-          that.videoPath = res.data.data.savePath;
-          that.videoIds = res.data.data.id;
+          that.videoPath = res.data.data.src;
+          that.videoIds = res.data.data.name;
           that.videoshow = false;
         })
           .catch(function (error) {

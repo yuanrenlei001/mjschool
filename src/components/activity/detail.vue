@@ -10,7 +10,7 @@
                 <p><span>课程结束：</span>{{list.detail.endAt}}</p>
                 <p><span>培训地点：</span>   {{list.detail.address}}</p>
                 <p><span>报名人数：</span>   {{list.detail.applyCount}}人</p>
-                <p @click="fixed"><span>联系人：</span>   {{list.detail.contact}} {{list.detail.contactInfo}}</p>
+                <p><span>联系人：</span>   {{list.detail.contact}} {{list.detail.contactInfo}}</p>
             </div>
         </div>
 
