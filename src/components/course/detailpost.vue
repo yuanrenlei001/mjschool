@@ -8,7 +8,7 @@
 <!--                <span>{{list.detail.createTime}}</span>-->
 <!--                <span class="read">{{list.detail.views}}</span>-->
 <!--            </div>-->
-          <video v-if="list.detail.video" autoplay loop :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>
+          <video v-if="list.detail.video" controls="controls" :src="getImg+list.detail.video" style="height:3rem;width:100%;margin: .5rem 0;"></video>
           <audio v-if="list.detail.audio" :src="getImg+list.detail.audio"  controls style="position: relative;width:80%;left:10%;">    </audio>
           <div><img v-for="item in list.on_doc" :src="getImg+item" alt="" style="width:100%;"></div>
 
@@ -167,7 +167,18 @@
                 pageSize:10,
                 pageNum:1,
                 pl:false,
-                plText:''
+                plText:'',
+              playerOptions : {
+                playbackRates: [1.0], //播放速度
+                autoplay: false, //如果true,浏览器准备好时开始回放。
+                muted: false, // 默认情况下将会消除任何音频。
+                loop: false, // 导致视频一结束就重新开始。
+                sources: [{
+                  type: "application/x-mpegURL",//这里的种类支持很多种：基本视频格式、直播、流媒体等，具体可以参看git网址项目
+                  src: 'https://belight-test.oss-cn-shanghai.aliyuncs.com/video/17/2019/04/01/14583968955367424.mp4' //url地址
+                }],
+                notSupportedMessage: '此视频暂无法播放，请稍后再试', //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+              },
 
             };
         },

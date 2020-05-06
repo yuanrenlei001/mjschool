@@ -1,8 +1,8 @@
 <script>
 
     var xhr = new XMLHttpRequest();
-    var  id='231';
-    // var  id=sessionStorage.getItem('userId')==null?'':sessionStorage.getItem('userId');
+    // var  id='231';
+    var  id=sessionStorage.getItem('userId')==null?'':sessionStorage.getItem('userId');
     var token = '';
     var that = this;
         function getCode(){
@@ -24,7 +24,7 @@
                 xhr.onreadystatechange = function() {
                     // alert(1)
                     // readyState == 4说明请求已完成
-                    if (xhr.readyState == 4 && xhr.status == 200) {xx
+                    if (xhr.readyState == 4 && xhr.status == 200) {
                         // alert('******3333********')
                         // alert(xhr)
                         // alert(JSON.parse(xhr.responseText).data.openId);

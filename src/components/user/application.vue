@@ -154,9 +154,12 @@
         left:-.15rem;
     }
     .text {height:2.8rem;padding: .24rem;border-radius: .2rem;background: #f7f7f7;color: #999;font-size: .26rem;width:6.5rem;
-        border: transparent;outline: none;
+        border: transparent;outline: none;resize: none;
     }
-    .block >>> .el-date-editor.el-input, .el-date-editor.el-input__inner {width:3rem;}
+    .block >>> .el-date-editor.el-input, .el-date-editor.el-input__inner {width:2.7rem;}
+    .block >>> .el-input--prefix .el-input__inner {padding-left: .5rem;}
+    .block >>> .el-input--suffix .el-input__inner {padding-left: .5rem;}
+    .block >>> .el-input__prefix {left:0;}
     .btns {width:7rem;position: relative;height:.8rem;text-align: center;line-height: .8rem;border-radius: .2rem;background: #fa5b55;
         color: #fff;margin:2rem  auto 0;font-size: .36rem;
     }

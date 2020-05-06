@@ -182,6 +182,7 @@
         },
         mounted(){
             this.Getuser();
+          document.querySelector('body').setAttribute('style', 'background:#fafafa')
         }
     }
 </script>
