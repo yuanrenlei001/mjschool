@@ -3,7 +3,6 @@
     var xhr = new XMLHttpRequest();
     var  id='231';
     // var  id=sessionStorage.getItem('userId')==null?'':sessionStorage.getItem('userId');
-    // alert(id)
     var token = '';
     var that = this;
         function getCode(){

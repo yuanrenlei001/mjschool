@@ -46,8 +46,8 @@
             </div>
             <div class="annex" v-show="list.files !==''">
                 <div class="annexTop" id="iconLink">附件（<span style="font-size: .22rem;">文件大于 <span style="color: #f21717;">5M</span> 安卓手机使用WPS或QQ浏览器打开</span>）</div>
-                <div class="annexSort" v-if="ispc == 1">
-                    <a   v-for="items in list.files" @click="download(items.id,items.savePath)">
+                <div class="annexSort" v-if="ispc == 0">
+                    <a   v-for="items in list.files" :href="getImg+items.savePath" :download="items.name">
                         <img  v-if="items.ext =='doc' || items.ext =='docx'" src="@/assets/img/share/word.png" alt="">
                         <img  v-else-if="items.ext =='xlsx' || items.ext =='xls'" src="@/assets/img/share/excel.png" alt="">
                         <img  v-else-if="items.ext =='jpg' || items.ext =='jpeg' || items.ext =='png' || items.ext =='gif'" src="@/assets/img/share/img.png" alt="">
@@ -56,7 +56,7 @@
                         <img  v-else src="@/assets/img/share/rar.png" alt="">
                         <img v-show="(items.size/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">
                         <p>{{items.name}}</p>
-                        <!--<img v-show="(25589/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
+                       <!--<img v-show="(25589/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
                     </a>
                     <!--<a @click="isPC()">-->
                         <!--<img   src="@/assets/img/share/excel.png" alt="">-->
@@ -78,15 +78,15 @@
                         <!--<img v-show="(items/1024/1024)>=5" class="Imgsize" src="/frontend/images/size.png" alt="">-->
                     <!--</a>-->
                 </div>
-                <div class="annexSort" v-if="ispc == 0">
+                <div class="annexSort" v-if="ispc == 1">
                     <a  v-for="items in list.files" @click="download(items.id,items.savePath)">
 <!--                    <a  v-for="items in list.files" target='_black'  :href='http://view.officeapps.live.com/op/view.aspx?src=$'>-->
                         <img  v-if="items.ext =='doc' || items.ext =='docx'" src="@/assets/img/share/word.png" alt="">
                         <img  v-else-if="items.ext =='xlsx' || items.ext =='xls'" src="@/assets/img/share/excel.png" alt="">
                         <img  v-else-if="items.ext =='jpg' || items.ext =='jpeg' || items.ext =='png' || items.ext =='gif'" src="@/assets/img/share/img.png" alt="">
                         <img  v-else-if="items.ext =='ppt'|| items.ext =='pptx'" src="@/assets/img/share/ppt.png" alt="">
-                        <img @click="isPC()"  v-else-if="items.ext =='pdf'" src="@/assets/img/share/pdf.png" alt="">
-                        <img  v-else src="@/assets/img/share/rar.png" alt="">
+                        <img   v-else-if="items.ext =='pdf'" src="@/assets/img/share/pdf.png" alt="">
+                        <img  v-else @click="isPC()" src="@/assets/img/share/rar.png" alt="">
                         <img v-show="(items.size/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">
                         <p>{{items.name}}</p>
                         <!--<img v-show="(25589/1024/1024)>=5" class="Imgsize" src="@/assets/img/share/size.png" alt="">-->
