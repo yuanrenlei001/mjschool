@@ -3,14 +3,17 @@
     var xhr = new XMLHttpRequest();
     var  id='231';
     // var  id=sessionStorage.getItem('userId')==null?'':sessionStorage.getItem('userId');
+    // alert(id)
     var token = '';
     var that = this;
         function getCode(){
             var code = getUrlParam('code'); // 截取路径中的code，如果没有就去微信授权，如果已经获取到了就直接传code给后台获取openId
+          // alert(code)
             // var code = ''; // 截取路径中的code，如果没有就去微信授权，如果已经获取到了就直接传code给后台获取openId
             var local = window.location.href;
             var APPID = "ww76673d8a0d7cd9d7"; // 企业微信
             if (code == null || code == "") {
+              // alert(1)
                 window.location.href =
                     "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" +
                     APPID +
@@ -18,13 +21,15 @@
                     encodeURIComponent(local) +
                     "&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
             } else {
+              // alert(2)
                 // xhr.open('GET', 'http://39.100.95.204:8080/api/home/activity', false);
                 // xhr.open('GET', 'http://39.100.95.204:8080/api/auth/'+code, false);
-                xhr.open('GET', ' https://trainingadmin.yunjiglobal.com/api/auth/'+code, false);
+                xhr.open('GET', 'https://trainingadmin.yunjiglobal.com/api/auth/'+code, false);
                 xhr.onreadystatechange = function() {
-                    // alert(1)
+                    // alert(3)
+                  // alert(xhr)
                     // readyState == 4说明请求已完成
-                    if (xhr.readyState == 4 && xhr.status == 200) {xx
+                    if (xhr.readyState == 4 && xhr.status == 200) {
                         // alert('******3333********')
                         // alert(xhr)
                         // alert(JSON.parse(xhr.responseText).data.openId);
@@ -33,7 +38,6 @@
                          id = sessionStorage.getItem('userId')
                         // id = JSON.parse(xhr.response).data.openId;
                         // // id = '2222';
-                        // alert(id)
                         // // token = JSON.parse(xhr.response.data.token);
                         setTimeout(function () {
                             console.log("5.在ajax赋值后ajax外面  _STR 的值：" + id);

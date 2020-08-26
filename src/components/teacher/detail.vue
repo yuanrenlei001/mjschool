@@ -16,7 +16,7 @@
             <div class="right033" v-if="list.star == 5"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""></div>
           <div class="right02222" v-if="list.onJob == 0">部门： <img src="@/assets/out.png" alt=""></div>
           <div class="right02222" v-if="list.onJob == 2">外部讲师</div>
-          <div class="right02222" v-if="list.onJob == 1">部门：{{!list.departD?'':list.departD.name}}</div>
+          <div class="right02222" v-if="list.onJob == 1">部门：{{!list.depart?'':list.depart}}</div>
         </div>
       <div class="top" v-else >
         <img :src="list.avatar" class="topBg">
@@ -35,7 +35,7 @@
         <div class="right033" v-if="(list.score==0?0:Math.round(list.score/list.scoreTotal)) ==5"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""></div>
         <div class="right02222" v-if="list.onJob == 0">部门： <img src="@/assets/out.png" alt=""></div>
         <div class="right02222" v-if="list.onJob == 2">外部讲师</div>
-        <div class="right02222" v-if="list.onJob == 1">部门：{{!list.departD?'':list.departD.name}}</div>
+        <div class="right02222" v-if="list.onJob == 1">部门：{{!list.depart?'':list.depart}}</div>
       </div>
         <div class="text">
             <div class="title">讲师介绍</div>

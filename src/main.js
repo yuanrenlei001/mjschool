@@ -44,7 +44,6 @@ Vue.prototype.$video = Video
 
 
 
-
 router.beforeEach((to, from, next) => {
     /* 路由发生变化修改页面title */
     if (to.meta.title) {

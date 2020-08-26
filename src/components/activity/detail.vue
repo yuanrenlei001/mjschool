@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" style="padding-bottom: 1.2rem;">
 <!--        <div class="top">-->
 <!--&lt;!&ndash;          <img :src="getImg+list.detail.frontCover" alt="">&ndash;&gt;-->
 <!--        </div>-->
@@ -27,9 +27,10 @@
                             <span v-if="list.courses[0].detail.teacher.star == 4">四星讲师</span>
                             <span v-if="list.courses[0].detail.teacher.star == 5">五星讲师</span>
                         </div>
+
                       <div class="right02" v-if="list.courses[0].detail.teacher.onJob == 0">部门： <img src="@/assets/out.png" alt=""></div>
                       <div class="right02" v-if="list.courses[0].detail.teacher.onJob == 2">外部讲师</div>
-                      <div class="right02" v-if="list.courses[0].detail.teacher.onJob == 1">部门：{{!list.courses[0].detail.teacher.departD?'':list.courses[0].detail.teacher.departD.name}}</div>
+                      <div class="right02" v-if="list.courses[0].detail.teacher.onJob == 1">部门：{{!list.courses[0].detail.teacher.depart?'':list.courses[0].detail.teacher.depart}}</div>
                         <div class="right03">
                           <div class="right03" v-if="(list.courses[0].detail.teacher.score==0?0:Math.round(list.courses[0].detail.teacher.score/list.courses[0].detail.teacher.scoreTotal)) ==0"><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                           <div class="right03" v-if="(list.courses[0].detail.teacher.score==0?0:Math.round(list.courses[0].detail.teacher.score/list.courses[0].detail.teacher.scoreTotal)) ==1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
@@ -63,7 +64,7 @@
                             </div>
                           <div class="right02" v-if="item.detail.teacher.onJob == 0">部门： <img src="@/assets/out.png" alt=""></div>
                           <div class="right02" v-if="item.detail.teacher.onJob == 2">外部讲师</div>
-                          <div class="right02" v-if="item.detail.teacher.onJob == 1">部门：{{!item.detail.teacher.departD?'':item.detail.teacher.departD.name}}</div>
+                          <div class="right02" v-if="item.detail.teacher.onJob == 1">部门：{{!item.detail.teacher.depart?'':item.detail.teacher.depart}}</div>
                           <div class="right03">
                             <div class="right03" v-if="(item.detail.teacher.score==0?0:Math.round(item.detail.teacher.score/item.detail.teacher.scoreTotal)) ==0"><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                             <div class="right03" v-if="(item.detail.teacher.score==0?0:Math.round(item.detail.teacher.score/item.detail.teacher.scoreTotal)) ==1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
@@ -91,7 +92,7 @@
                 </ul>
             </div>
         </div>
-        <div class="signUp">
+        <div class="signUp" style="">
             <div class="signTop"><span>签到人员 （{{list.detail.signs}}）</span> <router-link to="/codeUp" class="more">更多 <img src="@/assets/img/right.png" alt=""></router-link></div>
             <div class="signUser">
                 <ul>
@@ -241,16 +242,16 @@
                     });
             },
             evaluate:function(type){
-                if(type == 0){
-                    this.pl = true;
-                    this.plText = '未签到，无法评价导师'
-                    this.is_apply = '';
-                    this.isSign = false
-
-                }else{
-                    this.isSign = true;
+                // if(type == 0){
+                //     this.pl = true;
+                //     this.plText = '未签到，无法评价导师'
+                //     this.is_apply = '';
+                //     this.isSign = false
+                //
+                // }else{
+                //     this.isSign = true;
                     this.$router.push({path:'/evaluateList',query:{id:this.id}})
-                }
+                // }
 
                 // this.$router.push({name:'evaluateList',params: {id:this.id}})
             },
@@ -424,8 +425,12 @@
     .signUser ul {width:110%;position: relative;overflow: hidden;}
     .signUser ul li {float:left;text-align: center;width:1rem;font-size: .24rem;}
     .signUser img {width:.74rem;height:.74rem;border-radius: 50%;}
-    .btns {width:100%;height:2.4rem;position: relative;padding-top: 1rem;}
+    .btns {
+      width:100%;height:1rem;position: fixed;background: #fff;
+      bottom:0;left:0;
+    }
     .btn {
+      position: relative;top:.1rem;
         width: 7.02rem;height:.8rem;text-align: center;line-height: .8rem;border-radius: .2rem;
         background: #fa5b55;font-size: .3rem;color: #fff;margin:auto;
     }
