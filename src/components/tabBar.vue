@@ -7,12 +7,12 @@
             <span v-show="index==false">首页</span>
             <span v-show="index==true"  style="color:#fa5b55;">首页</span>
         </div>
-        <div class="tabBar-item" @click="go('/share')">
-            <img v-if="share==false" src="@/assets/img/index/share_ico1.png" alt="" class="icon">
-            <img v-if="share==true" src="@/assets/img/index/share_ico2.png" alt="" class="icon">
-            <span v-show="share==false">牛人分享</span>
-            <span v-show="share==true"  style="color:#fa5b55;">牛人分享</span>
-        </div>
+        <!--<div class="tabBar-item" @click="go('/share')">-->
+            <!--<img v-if="share==false" src="@/assets/img/index/share_ico1.png" alt="" class="icon">-->
+            <!--<img v-if="share==true" src="@/assets/img/index/share_ico2.png" alt="" class="icon">-->
+            <!--<span v-show="share==false">牛人分享</span>-->
+            <!--<span v-show="share==true"  style="color:#fa5b55;">牛人分享</span>-->
+        <!--</div>-->
         <div class="tabBar-item" @click="go('/user')">
             <img v-if="user==false"  src="@/assets/img/index/person_ico1.png" alt="" class="icon">
             <img v-if="user==true"  src="@/assets/img/index/person_ico2.png" alt="" class="icon">
@@ -165,7 +165,7 @@
 
     .tabBar-item{
         float:left;
-        width:33.333%;
+        width:50%;
         text-align: center;
         overflow: hidden;
         padding-top: .1rem;

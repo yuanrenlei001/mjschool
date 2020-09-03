@@ -10,15 +10,15 @@
           // alert(code)
             // var code = ''; // 截取路径中的code，如果没有就去微信授权，如果已经获取到了就直接传code给后台获取openId
             var local = window.location.href;
-            var APPID = "ww76673d8a0d7cd9d7"; // 企业微信
+            var APPID = "cli_9fa07f1e02a8500b"; // 企业微信
             if (code == null || code == "") {
-              // alert(1)
+                // alert(1)
                 window.location.href =
-                    "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" +
+                    "https://open.feishu.cn/open-apis/authen/v1/index?app_id=" +
                     APPID +
                     "&redirect_uri=" +
                     encodeURIComponent(local) +
-                    "&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+                    "&state=STATE#feishu_redirect";
             } else {
               // alert(2)
                 // xhr.open('GET', 'http://39.100.95.204:8080/api/home/activity', false);

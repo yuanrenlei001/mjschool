@@ -18,7 +18,7 @@
 <!--                    <div class="right02">{{item.intro}}</div>-->
                     <div class="right02" v-if="item.onJob == 0">部门： <img src="@/assets/out.png" alt=""></div>
                     <div class="right02" v-if="item.onJob == 2">外部讲师</div>
-                    <div class="right02" v-if="item.onJob == 1">部门：{{!item.departD?'':item.departD.name}}</div>
+                    <div class="right02" v-if="item.onJob == 1">部门：{{!item.depart?'':item.depart}}</div>
                     <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==0"><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                     <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==1"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
                     <div class="right03" v-if="(item.score==0?0:Math.round(item.score/item.scoreTotal)) ==2"><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx02.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""><img src="@/assets/img/teacher/iconxx01.png" alt=""></div>
