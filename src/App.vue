@@ -47,7 +47,7 @@
   }
   p {margin: 0;padding: 0;}
   ul,li{ padding:0;margin:0;list-style:none}
-  .alert {width:5rem;background: #fff;position: relative;margin:30% auto 0;font-size: .28rem;height:3rem;border-radius: .2rem;}
+  .alert {width:5rem;background: #fff;position: relative;margin:-1.5rem auto 0;font-size: .28rem;height:3rem;border-radius: .2rem;top:50%;}
   .titles ,.alerts,.alertBtn{height:1rem;line-height: 1rem;font-size: .28rem;text-align: center;}
 
 </style>

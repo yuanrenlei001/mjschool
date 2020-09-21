@@ -146,7 +146,7 @@
             </div>
         </div>
         <div class="fixed" v-show="pl">
-            <div class="alert" v-if="ispc" style="margin: 1rem auto 0;">
+            <div class="alert" v-if="ispc">
                 <div class="titles">提 示</div>
                 <div class="alerts">{{plText}}</div>
                 <div class="alertBtn" @click="alertBtn()">确定</div>
