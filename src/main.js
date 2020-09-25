@@ -52,8 +52,8 @@ router.beforeEach((to, from, next) => {
     next()
 });
 // Vue.prototype.getAjax = '/api';
-// Vue.prototype.getAjax = 'http://39.100.95.204:8080/api'
-Vue.prototype.getAjax = 'https://trainingadmin.yunjiglobal.com/api'
+Vue.prototype.getAjax = 'http://39.100.95.204:8080/api'
+// Vue.prototype.getAjax = 'https://trainingadmin.yunjiglobal.com/api'
 Vue.prototype.getImg = 'https://yunji-training-1254201734.cos.ap-shanghai.myqcloud.com/'
 // Vue.prototype.getImg = 'http://39.100.95.204:8080'
 Vue.prototype.userId = global_.id
