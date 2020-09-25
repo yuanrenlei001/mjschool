@@ -520,53 +520,55 @@
         cursor: pointer;
     }
     /*底部*/
-    .bottom {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 12vw;
-        padding-left: 2.6vw;
-        border-top: 1px solid #f1f1f1;
-        background: #ffffff;
-        font-family: "Microsoft YaHei", sans-serif;
-    }
-    .bottom .star {
-        background: url('/frontend/images/detail/star-border.png') 5.4vw 3.2vw no-repeat;
-    }
-    .bottom .star_ {
-        animation: shake 300ms ease;
-        -webkit-animation: shake 300ms ease;
-        background: url('/frontend/images/detail/star-yellow.png') 5.4vw 3.2vw no-repeat;
-    }
-    .bottom .collect {
-        width: 16vw;
-        height: 100%;
-        font-size: .24rem;
-        text-align: center;
-        background-size: 5.4vw 5.4vw;
-        padding-top: 24px;
-    }
-    .bottom .myword input {
-        vertical-align: middle;
-        height: 8vw;
-        width: 92vw;
-        margin: 1.8vw 0;
-        padding-left: 2.6vw;
-        background: #fafafa;
-        border: 1px solid #d8d8d8;
-        -webkit-border-radius: 1.6vw;
-        border-radius: 1.6vw;
-        font-size: .24rem;
-    }
-    .bottom .send {
-        width: 20.5vw;
-        line-height: 12vw;
-        text-align: center;
-        font-size: .3rem;
-    }
-    .bottom .send:active {
-        background: #fafafa;
-    }
+  .bottom {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 12vw;
+      border-top: 1px solid #f1f1f1;
+      background: #ffffff;
+      font-family: "Microsoft YaHei", sans-serif;
+      max-width: 750px;
+  }
+  .bottom .star {
+      background: url('/frontend/images/detail/star-border.png') 5.4vw 3.2vw no-repeat;
+  }
+  .bottom .star_ {
+      animation: shake 300ms ease;
+      -webkit-animation: shake 300ms ease;
+      background: url('/frontend/images/detail/star-yellow.png') 5.4vw 3.2vw no-repeat;
+  }
+  .bottom .collect {
+      width: 16vw;
+      height: 100%;
+      font-size: .24rem;
+      text-align: center;
+      background-size: 5.4vw 5.4vw;
+      padding-top: 24px;
+  }
+  .bottom .myword input {
+      vertical-align: middle;
+      height: 8vw;
+      width: 92vw;
+      margin: 1.8vw auto 1.8vw;
+      padding-left: 2.6vw;
+      background: #fafafa;
+      border: 1px solid #d8d8d8;
+      -webkit-border-radius: 1.6vw;
+      border-radius: 1.6vw;
+      font-size: .24rem;
+      max-width: 750px;
+      position: relative;
+  }
+  .bottom .send {
+      width: 20.5vw;
+      line-height: 12vw;
+      text-align: center;
+      font-size: .3rem;
+  }
+  .bottom .send:active {
+      background: #fafafa;
+  }
     .content .title {padding: 4vw;}
     .content .title ,.content .title p{
         font-size: .32rem;
