@@ -580,6 +580,7 @@
   .bottom .send:active {
       background: #fafafa;
   }
+  .list .plTop {height:1.3rem;}
     .content .title {padding: 4vw;}
     .content .title ,.content .title p{
         font-size: .32rem;
@@ -831,8 +832,16 @@
     }
     .fl {float:left;font-size: .26rem;}
     .lists {margin-top: -4vw;}
-    .midRight .name {font-size: .26rem;color: #4c4c4c;padding-top: .3rem;}
-    .midRight .time {font-size: .26rem;color: #808080;}
+    .midRight .name {font-size: .26rem;color: #4c4c4c;padding-top: .3rem;
+        position: absolute;
+        left:1rem;
+        top:0;
+    }
+    .midRight .time {font-size: .26rem;color: #808080;
+        position: absolute;
+        bottom: 0;
+        left: 1rem;
+    }
     /*评论*/
     .ready .list ,.zan .list {
         width: 100%;
@@ -898,16 +907,17 @@
 
 
 
+  .zan .list .fl {height:1.3rem;}
 
-    .zan .list .fl img {
-        width: .74rem;
-        height: .74rem;
-        margin-top: 3.4vw;
-        margin-right: 3vw;
-        overflow: hidden;
-        -webkit-border-radius: 50%;
-        border-radius: 50%;
-    }
+
+  .zan .list .fl img {
+      width: .74rem;
+      height: .74rem;
+      overflow: hidden;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+      position: absolute;top:50%;margin-top: -.37rem;
+  }
     .zan .list .mid {
         width: 100%;
         position: relative;
@@ -924,6 +934,7 @@
     }
     .midRight {
         height:1rem;
+        position: relative;
     }
     .zan .list .mid .PLcontent {
         width: 100%;
