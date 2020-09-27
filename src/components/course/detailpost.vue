@@ -119,7 +119,7 @@
             <div class="fixedBody">
                 <h2></h2>
                 <p>请输入您的评论！</p>
-                <textarea v-model="content"></textarea>
+                <textarea v-model="content" id="textareas"></textarea>
                 <div class="fixedBottom">
                     <span class="cancel" @click="cancel()" style="cursor:pointer;">取消</span>
                     <span class="btn" @click="btn()" style="cursor:pointer;">确定</span>
@@ -138,7 +138,7 @@
                 <div class="alertBtn" @click="alertBtn()">确定</div>
             </div>
         </div>
-        <div @click="send()" class="bottom clear" id="bottoms"><div class="myword fl"><input type="text" id="inputss" placeholder="说说你的感想！" disabled="disabled"></div></div>
+        <div @click="send()" class="bottom clear" id="bottoms" style="text-align: center;"><div class="myword fl" style="width: 100%;"><input type="text" id="inputss" placeholder="说说你的感想！" disabled="disabled"></div></div>
     </div>
 </template>
 
@@ -399,6 +399,14 @@
             this._isMobile();
             this.activityDetail();
             this.comment();
+            if(window.screen.width>1024){
+                var bottoms = document.getElementById("bottoms");
+                var inputss = document.getElementById("inputss");
+                var textareas = document.getElementById("textareas");
+                bottoms.style.cssText='height:7vw';
+                inputss.style.cssText='height:4vw';
+                textareas.style.cssText='height:60%';
+            }
         }
     }
 </script>
@@ -445,7 +453,10 @@
         font-size: .26rem;
     }
     .fixedBody {width:auto;height:5rem;background: #fff;border-radius: .2rem;position: relative;
-        margin-top: 30%;padding: .2rem;text-align: center;
+        padding: .2rem;text-align: center;
+        top: 50%;
+        margin: -2.5rem auto 0;
+        max-width: 750px;
     }
     .fixedBody p {
         color: #797979;
